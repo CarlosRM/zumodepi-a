@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/switchActivity"
+        android:title="Switch To RV" />
+
+    <item
+        android:id="@+id/addFilmButton"
+        android:title="Add Film" />
+</menu>

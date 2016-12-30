@@ -4,14 +4,16 @@ package com.example.pr_idi.mydatabaseexample;
 import java.util.List;
 import java.util.Random;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
     private FilmData filmData;
+    private ListView filmList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,16 +27,17 @@ public class MainActivity extends ListActivity {
 
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
+        filmList = (ListView)findViewById(R.id.list);
         ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
+        filmList.setAdapter(adapter);
     }
 
     // Will be called via the onClick attribute
     // of the buttons in main.xml
     public void onClick(View view) {
         @SuppressWarnings("unchecked")
-        ArrayAdapter<Film> adapter = (ArrayAdapter<Film>) getListAdapter();
+        ArrayAdapter<Film> adapter = (ArrayAdapter<Film>) filmList.getAdapter();
         Film film;
         switch (view.getId()) {
             case R.id.add:
@@ -45,8 +48,8 @@ public class MainActivity extends ListActivity {
                 adapter.add(film);
                 break;
             case R.id.delete:
-                if (getListAdapter().getCount() > 0) {
-                    film = (Film) getListAdapter().getItem(0);
+                if (filmList.getAdapter().getCount() > 0) {
+                    film = (Film) filmList.getAdapter().getItem(0);
                     filmData.deleteFilm(film);
                     adapter.remove(film);
                 }

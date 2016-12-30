@@ -8,19 +8,44 @@
               android:clickable="true"
               android:focusable="true"
               android:background="?android:attr/selectableItemBackground">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This is the title"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:id="@+id/titleTextView"/>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="This is the title"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:id="@+id/titleTextView"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Director goes in here"
-            android:id="@+id/directorTextView"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Director goes in here"
+                android:id="@+id/directorTextView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Year goes in here"
+                android:id="@+id/yearTextView"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Country goes here"
+                android:id="@+id/countryTextView"/>
+
+        </LinearLayout>
+
 
 
 </LinearLayout>

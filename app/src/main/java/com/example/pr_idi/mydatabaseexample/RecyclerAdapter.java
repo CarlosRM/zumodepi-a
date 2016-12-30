@@ -49,6 +49,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         holder.title.setText(film.getTitle());
         holder.director.setText(film.getDirector());
+        holder.country.setText(" - " + film.getCountry());
+        holder.year.setText(" - " + String.valueOf(film.getYear()));
     }
 
     @Override
@@ -60,6 +62,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         private TextView title;
         private TextView director;
+        private TextView year;
+        private TextView country;
         private View container;
 
         public RecyclerHolder(View itemView) {
@@ -67,6 +71,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
             title = (TextView) itemView.findViewById(R.id.titleTextView);
             director = (TextView) itemView.findViewById(R.id.directorTextView);
+            year = (TextView) itemView.findViewById(R.id.yearTextView);
+            country = (TextView) itemView.findViewById(R.id.countryTextView);
             container = itemView.findViewById(R.id.containerView);
             container.setOnClickListener(this);
         }

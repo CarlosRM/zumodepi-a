@@ -9,17 +9,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:text="Title:"/>
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
                 android:padding="12dp"
+                android:hint="Title"
                 android:id="@+id/insertTitleView"/>
 
     </LinearLayout>
@@ -29,17 +24,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="Country:"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
             android:padding="12dp"
+            android:hint="Country"
             android:id="@+id/insertCountryView"/>
 
     </LinearLayout>
@@ -49,17 +39,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="Director:"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
             android:padding="12dp"
+            android:hint="Director"
             android:id="@+id/insertDirectorView"/>
 
     </LinearLayout>
@@ -70,17 +55,12 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="Protagonist:"/>
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
             android:padding="12dp"
+            android:hint="Protagonist"
             android:id="@+id/insertProtagonistView"/>
 
     </LinearLayout>
@@ -89,12 +69,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="Year:"/>
 
         <EditText
             android:layout_width="wrap_content"

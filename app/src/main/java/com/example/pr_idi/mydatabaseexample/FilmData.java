@@ -112,9 +112,9 @@ public class FilmData {
         film.setTitle(cursor.getString(1));
         film.setDirector(cursor.getString(2));
         film.setCountry(cursor.getString(3));
-        film.setYear(cursor.getInt(4));
+        film.setYear(cursor.getInt(6));
         film.setProtagonist(cursor.getString(5));
-        film.setCritics_rate(cursor.getInt(6));
+        film.setCritics_rate(cursor.getInt(4));
         return film;
     }
 }

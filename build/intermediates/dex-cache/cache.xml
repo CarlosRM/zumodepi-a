@@ -2,76 +2,63 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\Users\Juan\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-22.2.1_a35adba2fa7f64050f9c5ae2da5ef68157b71ef8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="55c85b78d1089c9b2559ddfd4226022e38020dc8">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3403c39a844038b57eb79a40c74fe6433df2c5f6\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-22.2.1_ba67a25b909a0f240788cee2cab0477d131cecbf\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="22.0.1"
-        sha1="22f24ee33a9c5c9df8c01c578fca465b6942311c">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_7b8e2b5ba03a9624bc285f0cc658fec197ec81a4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.1"
         sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-22.2.0_0fdd50caeae961b6e8ed8537ec56b1551927b1da\classes.dex" />
+        <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\com.android.support-design-22.2.0_772eefc59c655916225857130b9caaea0574b5d7.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.1"
+<<<<<<< HEAD
         sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-22.2.1_49d8e8c9666cc7b49824abbbc1ea9a6dd49ddaf1\classes.dex" />
+        <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-22.2.1_d9028b81c7db82f153d102c4908cb0fe16183dca.jar" />
+=======
+        sha1="55c85b78d1089c9b2559ddfd4226022e38020dc8">
+        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3403c39a844038b57eb79a40c74fe6433df2c5f6\classes.dex" />
+>>>>>>> 70b7ac192114e002040d4f5d7224a16d573c1d7c
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-22.2.1_421afb1bf2dfc2b010be15eaad9bfeb14a8de31b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Carlos\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.1\support-annotations-22.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.1_093a6813fef8b7df3eb4b1d3f4dc90bdf0e67506.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.1"
         sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-22.2.1_f7588e674390c4fddc6f2b79fd397461a09d0365\classes.dex" />
+        <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-22.2.1_8f96c3ebcf4025c99461617732d83c47b208349c.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.1\jars\libs\internal_impl-22.2.1.jar"
+        jumboMode="false"
         optimize="true"
         revision="22.0.1"
         sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
-        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-22.2.1_e0313ca46be3de05423475876f3a85b84a20d786\classes.dex" />
+        <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.1_0a19971d825cb67bec6a18893bfbf7b6283db2c8.jar" />
     </item>
 
 </items>

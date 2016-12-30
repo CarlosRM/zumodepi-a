@@ -39,19 +39,8 @@ public class FilmData {
     }
 
     public Film createFilm(String title, String director, String country, String protagonist, int year, int rate) {
-        ContentValues values = new ContentValues();
+        ContentValues values = MySQLiteHelper.createValues(title, director, country, protagonist, year, rate);
         Log.d("Creating", "Creating " + title + " " + director);
-
-        // Add data: Note that this method only provides title and director
-        // Must modify the method to add the full data
-        values.put(MySQLiteHelper.COLUMN_TITLE, title);
-        values.put(MySQLiteHelper.COLUMN_DIRECTOR, director);
-
-        // Invented data
-        values.put(MySQLiteHelper.COLUMN_COUNTRY, country);
-        values.put(MySQLiteHelper.COLUMN_YEAR_RELEASE, year);
-        values.put(MySQLiteHelper.COLUMN_PROTAGONIST, protagonist);
-        values.put(MySQLiteHelper.COLUMN_CRITICS_RATE, rate);
 
         // Actual insertion of the data using the values variable
         long insertId = database.insert(MySQLiteHelper.TABLE_FILMS, null,

@@ -55,32 +55,7 @@ public class MainActivity extends Activity {
             }
         });
     }
-
-    // Will be called via the onClick attribute
-    // of the buttons in main.xml
-    public void onClick(View view) {
-        @SuppressWarnings("unchecked")
-        ArrayAdapter<Film> adapter = (ArrayAdapter<Film>) filmList.getAdapter();
-        Film film;
-        switch (view.getId()) {
-            case R.id.add:
-                String[] newFilm = new String[] { "Blade Runner", "Ridley Scott", "Rocky Horror Picture Show", "Jim Sharman", "The Godfather", "Francis Ford Coppola", "Toy Story", "John Lasseter" };
-                int nextInt = new Random().nextInt(4);
-                // save the new film to the database
-                film = filmData.createFilm(newFilm[nextInt*2], newFilm[nextInt*2 + 1],"Random","Random",3000,33);
-                adapter.add(film);
-                break;
-            case R.id.delete:
-                if (filmList.getAdapter().getCount() > 0) {
-                    film = (Film) filmList.getAdapter().getItem(0);
-                    filmData.deleteFilm(film);
-                    adapter.remove(film);
-                }
-                break;
-        }
-        adapter.notifyDataSetChanged();
-    }
-
+    
     @Override
     protected void onResume() {
         filmData.open();

@@ -7,4 +7,8 @@
     <item
         android:id="@+id/addFilmButton"
         android:title="Add Film" />
+    <item
+        android:id="@+id/searchButton"
+        android:icon="@drawable/ic_search"
+        android:title="Search" />
 </menu>

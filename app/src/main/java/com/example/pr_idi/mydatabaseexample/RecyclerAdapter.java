@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -16,8 +17,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
     private List<Film> listFilmData;
     private LayoutInflater inflater;
+    private Context context;
+
+
+    private ItemClickCallback itemClickCallback;
+
+    public interface ItemClickCallback {
+        void onItemClick(int p);
+    }
+
+    public void setItemClickCallback (final ItemClickCallback itemClickCallback) {
+        this.itemClickCallback = itemClickCallback;
+    }
+
 
     public RecyclerAdapter(List<Film> listFilmData, Context context){
+        this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.listFilmData = listFilmData;
     }
@@ -31,6 +46,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     @Override
     public void onBindViewHolder(RecyclerHolder holder, int position) {
         Film film = listFilmData.get(position);
+
         holder.title.setText(film.getTitle());
         holder.director.setText(film.getDirector());
     }
@@ -40,7 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return listFilmData.size();
     }
 
-    class RecyclerHolder extends RecyclerView.ViewHolder {
+    class RecyclerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView title;
         private TextView director;
@@ -52,6 +68,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             title = (TextView) itemView.findViewById(R.id.titleTextView);
             director = (TextView) itemView.findViewById(R.id.directorTextView);
             container = itemView.findViewById(R.id.containerView);
+            container.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            itemClickCallback.onItemClick(getAdapterPosition());
+        }
+
     }
+
+
 }

@@ -5,6 +5,7 @@ package com.example.pr_idi.mydatabaseexample;
  * Created by pr_idi on 10/11/16.
  */
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -70,6 +71,22 @@ public class FilmData {
         System.out.println("Film deleted with id: " + id);
         database.delete(MySQLiteHelper.TABLE_FILMS, MySQLiteHelper.COLUMN_ID
                 + " = " + id, null);
+    }
+
+    public List<String> getFilms(String columnName, String name) {
+        List<String> films = new ArrayList<>();
+        String[] columns = {MySQLiteHelper.COLUMN_TITLE};
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, columns, columnName + "= '" + name +"'", null, null, null, null);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            films.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+
+        return films;
     }
 
     public List<Film> getAllFilms(String order) {

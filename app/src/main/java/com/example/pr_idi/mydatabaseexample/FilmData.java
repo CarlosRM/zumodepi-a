@@ -75,7 +75,6 @@ public class FilmData {
 
     public List<Film> getFilms(String columnName, String name) {
         List<Film> films = new ArrayList<>();
-        String[] columns = {MySQLiteHelper.COLUMN_TITLE};
         Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, null, columnName + "= '" + name +"'", null, null, null, null);
 
         cursor.moveToFirst();

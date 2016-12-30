@@ -3,17 +3,49 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical" >
-
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textSize="22dp"
+    android:textStyle="bold"
+    android:textColor="#FFF"
+    android:text="New film"
+    android:padding="8dp"
+    android:background="#000"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.4"
+        android:background="@android:color/black"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-            <EditText
+        android:orientation="vertical"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        >
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="12dp"
-                android:padding="12dp"
+                android:textSize="16dp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:text="Title"
+                android:layout_marginLeft="16dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="16dp"
+                android:alpha="0.4"
+                android:background="@android:color/black"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:layout_marginLeft="24dp"
                 android:hint="Title"
                 android:id="@+id/insertTitleView"/>
 
@@ -22,28 +54,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <EditText
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        >
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:padding="12dp"
-            android:hint="Country"
-            android:id="@+id/insertCountryView"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:text="Director"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.4"
+            android:background="@android:color/black"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:padding="12dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
             android:hint="Director"
             android:id="@+id/insertDirectorView"/>
 
@@ -53,22 +87,178 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        >
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="12dp"
-            android:padding="12dp"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:text="Protagonist"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.4"
+            android:background="@android:color/black"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="24dp"
+            android:layout_marginLeft="24dp"
             android:hint="Protagonist"
-            android:id="@+id/insertProtagonistView"/>
+            android:id="@+id/insertProtagonistView"
+            />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+       >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:text="Country"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.4"
+            android:background="@android:color/black"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/countrySpinnerView"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:text="Rate"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.4"
+            android:background="@android:color/black"/>
+
+            <SeekBar
+                android:id="@+id/insertRateView"
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:max="100"
+                android:layout_weight="0.9"/>
+            <TextView
+                android:id="@+id/rateValueView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textAlignment="center"
+                android:layout_weight="0.1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:padding="8dp">
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="right"
+                    android:id="@+id/star11"
+                    android:src="@drawable/ic_star_border_black_18dp"
+                    android:clickable="true"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="right"
+                    android:id="@+id/star22"
+                    android:src="@drawable/ic_star_border_black_18dp"
+                    android:clickable="true"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="right"
+                    android:id="@+id/star33"
+                    android:src="@drawable/ic_star_border_black_18dp"
+                    android:clickable="true"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="right"
+                    android:id="@+id/star44"
+                    android:src="@drawable/ic_star_border_black_18dp"
+                    android:clickable="true"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:gravity="right"
+                    android:id="@+id/star55"
+                    android:src="@drawable/ic_star_border_black_18dp"
+                    android:clickable="true"/>
+            </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12dp"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:text="Rate"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="16dp"
+            android:alpha="0.4"
+            android:background="@android:color/black"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -80,27 +270,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="Rate:"/>
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:inputType="number"
-            android:maxLength="2"
-            android:id="@+id/insertRateView"/>
-
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"

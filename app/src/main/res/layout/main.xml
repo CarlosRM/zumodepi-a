@@ -23,8 +23,9 @@
         android:id="@+id/navMenu"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
+        app:headerLayout="@layout/navigation_header"
         app:menu="@menu/main_menu"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 </android.support.v4.widget.DrawerLayout>

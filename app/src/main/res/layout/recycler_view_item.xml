@@ -7,12 +7,23 @@
               android:clickable="true"
               android:focusable="true"
               android:background="?android:attr/selectableItemBackground">
+
+        <View
+        android:id="@+id/lineView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:alpha="0.4"
+        android:background="@android:color/black"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingLeft="8dp"
-            android:paddingTop="8dp">
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -21,45 +32,118 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#000"
+                android:layout_weight="0.5"
                 android:id="@+id/titleTextView"/>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:id="@+id/star1"
+                android:src="@drawable/ic_star_border_black_18dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:id="@+id/star2"
+                android:src="@drawable/ic_star_border_black_18dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:id="@+id/star3"
+                android:src="@drawable/ic_star_border_black_18dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:id="@+id/star4"
+                android:src="@drawable/ic_star_border_black_18dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:id="@+id/star5"
+                android:paddingRight="6dp"
+                android:src="@drawable/ic_star_border_black_18dp"/>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Director goes in here"
-                android:id="@+id/directorTextView"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Year goes in here"
-                android:id="@+id/yearTextView"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Country goes here"
-                android:id="@+id/countryTextView"/>
-
-        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="8dp"
-            android:paddingBottom="8dp">
-            <TextView
+            android:orientation="vertical"
+            android:layout_weight="0.1">
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Protagonist goes here"
-                android:id="@+id/protagonistTextView"/>
+                android:paddingLeft="8dp"
+                android:paddingBottom="4dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Protagonist: "
+                    android:textStyle="bold"
+                    android:layout_weight="0.1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Protagonist goes here"
+                    android:id="@+id/protagonistTextView"
+                    android:layout_weight="0.5"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="8dp"
+                android:paddingBottom="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Director goes in here"
+                    android:id="@+id/directorTextView"
+                    android:textStyle="italic"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Year goes in here"
+                    android:id="@+id/yearTextView"
+                    android:textStyle="italic"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country goes here"
+                    android:id="@+id/countryTextView"
+                    android:textStyle="italic"/>
+
+            </LinearLayout>
+
         </LinearLayout>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_delete_forever_black_24dp"
+            android:id="@+id/deleteFilmImageView"
+            android:clickable="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
+
+
 
 
 

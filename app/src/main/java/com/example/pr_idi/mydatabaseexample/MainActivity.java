@@ -4,14 +4,19 @@ package com.example.pr_idi.mydatabaseexample;
 import java.util.List;
 import java.util.Random;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
     private FilmData filmData;
+    private ListView filmList;
+    private NavigationView navView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,16 +30,37 @@ public class MainActivity extends ListActivity {
 
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
+        filmList = (ListView)findViewById(R.id.list);
         ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, values);
-        setListAdapter(adapter);
+        filmList.setAdapter(adapter);
+
+        navView = (NavigationView) findViewById(R.id.navMenu);
+
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.switchActivity:
+                        Intent myIntent = new Intent(getApplicationContext(), RecyclerViewActivity.class);
+                        startActivity(myIntent);
+                        break;
+                    case R.id.addFilmButton:
+                        Intent myIntent2 = new Intent(getApplicationContext(), InsertFilmActivity.class);
+                        startActivity(myIntent2);
+                        break;
+                    default: return false;
+                }
+                return true;
+            }
+        });
     }
 
     // Will be called via the onClick attribute
     // of the buttons in main.xml
     public void onClick(View view) {
         @SuppressWarnings("unchecked")
-        ArrayAdapter<Film> adapter = (ArrayAdapter<Film>) getListAdapter();
+        ArrayAdapter<Film> adapter = (ArrayAdapter<Film>) filmList.getAdapter();
         Film film;
         switch (view.getId()) {
             case R.id.add:
@@ -45,19 +71,11 @@ public class MainActivity extends ListActivity {
                 adapter.add(film);
                 break;
             case R.id.delete:
-                if (getListAdapter().getCount() > 0) {
-                    film = (Film) getListAdapter().getItem(0);
+                if (filmList.getAdapter().getCount() > 0) {
+                    film = (Film) filmList.getAdapter().getItem(0);
                     filmData.deleteFilm(film);
                     adapter.remove(film);
                 }
-                break;
-            case R.id.switchActivity:
-                Intent myIntent = new Intent(this, RecyclerViewActivity.class);
-                startActivity(myIntent);
-                break;
-            case R.id.addFilmButton:
-                Intent myIntent2 = new Intent(this, InsertFilmActivity.class);
-                startActivity(myIntent2);
                 break;
         }
         adapter.notifyDataSetChanged();

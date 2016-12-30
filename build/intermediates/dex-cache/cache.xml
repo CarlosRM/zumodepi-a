@@ -16,8 +16,13 @@
         jumboMode="false"
         optimize="true"
         revision="22.0.1"
+<<<<<<< HEAD
         sha1="3abb4b88f5a8a0584a9b01d3170d7165f12f8588">
         <dex dex="C:\Users\Carlos\Desktop\zumodepi-a\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-22.2.1_d9028b81c7db82f153d102c4908cb0fe16183dca.jar" />
+=======
+        sha1="55c85b78d1089c9b2559ddfd4226022e38020dc8">
+        <dex dex="C:\Users\Juan\Documents\zumodepi-a\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_3403c39a844038b57eb79a40c74fe6433df2c5f6\classes.dex" />
+>>>>>>> 70b7ac192114e002040d4f5d7224a16d573c1d7c
     </item>
     <item
         is-multidex="false"

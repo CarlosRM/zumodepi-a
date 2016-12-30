@@ -7,6 +7,8 @@ import java.util.Random;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -14,6 +16,7 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
     private FilmData filmData;
     private ListView filmList;
+    private NavigationView navView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,26 @@ public class MainActivity extends Activity {
         ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, values);
         filmList.setAdapter(adapter);
+
+        navView = (NavigationView) findViewById(R.id.navMenu);
+
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.switchActivity:
+                        Intent myIntent = new Intent(getApplicationContext(), RecyclerViewActivity.class);
+                        startActivity(myIntent);
+                        break;
+                    case R.id.addFilmButton:
+                        Intent myIntent2 = new Intent(getApplicationContext(), InsertFilmActivity.class);
+                        startActivity(myIntent2);
+                        break;
+                    default: return false;
+                }
+                return true;
+            }
+        });
     }
 
     // Will be called via the onClick attribute
@@ -53,14 +76,6 @@ public class MainActivity extends Activity {
                     filmData.deleteFilm(film);
                     adapter.remove(film);
                 }
-                break;
-            case R.id.switchActivity:
-                Intent myIntent = new Intent(this, RecyclerViewActivity.class);
-                startActivity(myIntent);
-                break;
-            case R.id.addFilmButton:
-                Intent myIntent2 = new Intent(this, InsertFilmActivity.class);
-                startActivity(myIntent2);
                 break;
         }
         adapter.notifyDataSetChanged();

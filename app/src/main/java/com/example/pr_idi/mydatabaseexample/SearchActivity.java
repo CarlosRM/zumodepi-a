@@ -32,9 +32,8 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    List<String> filmsFound = filmData.getFilms(MySQLiteHelper.COLUMN_PROTAGONIST, editText.getText().toString());
-                    for (String x : filmsFound) System.out.println(x);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, filmsFound);
+                    List<Film> filmsFound = filmData.getFilms(MySQLiteHelper.COLUMN_PROTAGONIST, editText.getText().toString());
+                    FilmAdapter adapter = new FilmAdapter(getApplicationContext(), filmsFound);
                     listView.setAdapter(adapter);
                     return true;
                 }

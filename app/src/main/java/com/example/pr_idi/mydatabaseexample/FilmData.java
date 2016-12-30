@@ -73,14 +73,15 @@ public class FilmData {
                 + " = " + id, null);
     }
 
-    public List<String> getFilms(String columnName, String name) {
-        List<String> films = new ArrayList<>();
+    public List<Film> getFilms(String columnName, String name) {
+        List<Film> films = new ArrayList<>();
         String[] columns = {MySQLiteHelper.COLUMN_TITLE};
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, columns, columnName + "= '" + name +"'", null, null, null, null);
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, null, columnName + "= '" + name +"'", null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            films.add(cursor.getString(0));
+            Film film = cursorToFilm(cursor);
+            films.add(film);
             cursor.moveToNext();
         }
         // make sure to close the cursor

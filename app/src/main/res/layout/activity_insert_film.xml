@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical" >
+
 <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -136,7 +143,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:alpha="0.4"
             android:background="@android:color/black"/>
@@ -168,7 +175,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:alpha="0.4"
             android:background="@android:color/black"/>
@@ -186,7 +193,7 @@
                 android:id="@+id/rateValueView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0"
+                android:text="50"
                 android:textAlignment="center"
                 android:layout_weight="0.1"/>
 
@@ -251,21 +258,32 @@
             android:textColor="#000"
             android:textStyle="bold"
             android:layout_marginLeft="16dp"
-            android:text="Rate"/>
+            android:text="Year"/>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginRight="4dp"
+            android:layout_marginRight="16dp"
             android:layout_marginLeft="16dp"
             android:alpha="0.4"
             android:background="@android:color/black"/>
 
-        <EditText
-            android:layout_width="wrap_content"
+        <SeekBar
+            android:id="@+id/insertYearView"
+            android:paddingTop="8dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:inputType="number"
-            android:id="@+id/insertYearView"/>
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:progress="62"
+            android:max="124"
+            android:layout_weight="0.9"/>
+        <TextView
+            android:id="@+id/yearValueView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="1958"
+            android:textAlignment="center"
+            android:layout_weight="0.1"/>
 
 
     </LinearLayout>
@@ -276,15 +294,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:padding="16dp">
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Insert Film"
+            android:text="Add Film"
             android:id="@+id/insertButtonView"/>
 
     </LinearLayout>
 
 
 </LinearLayout>
+
+</ScrollView>

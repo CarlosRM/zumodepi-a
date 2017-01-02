@@ -7,12 +7,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
     private FilmData filmData;
+    private DrawerLayout navDrawer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends Activity {
         filmList.setAdapter(adapter);
 
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
+        navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
 
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -40,16 +43,19 @@ public class MainActivity extends Activity {
                     case R.id.switchActivity: {
                         Intent myIntent = new Intent(getApplicationContext(), RecyclerViewActivity.class);
                         startActivity(myIntent);
+                        navDrawer.closeDrawers();
                         break;
                     }
                     case R.id.addFilmButton: {
                         Intent myIntent = new Intent(getApplicationContext(), InsertFilmActivity.class);
                         startActivity(myIntent);
+                        navDrawer.closeDrawers();
                         break;
                     }
                     case R.id.searchButton: {
                         Intent myIntent = new Intent(getApplicationContext(), SearchActivity.class);
                         startActivity(myIntent);
+                        navDrawer.closeDrawers();
                         break;
                     }
                     default: return false;

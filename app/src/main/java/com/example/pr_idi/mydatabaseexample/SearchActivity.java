@@ -1,5 +1,7 @@
 package com.example.pr_idi.mydatabaseexample;
 
+import android.app.SearchManager;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -27,7 +29,9 @@ public class SearchActivity extends AppCompatActivity {
         filmData = new FilmData(this);
         filmData.open();
 
-        editText = (EditText)findViewById(R.id.searchText);
+        onSearchRequested();
+
+        /*editText = (EditText)findViewById(R.id.searchText);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -39,6 +43,18 @@ public class SearchActivity extends AppCompatActivity {
                 }
                 return false;
             }
-        });
+        });*/
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            System.out.println("Hola " + query);
+            List<Film> filmsFound = filmData.getFilms(MySQLiteHelper.COLUMN_PROTAGONIST, query);
+            FilmAdapter adapter = new FilmAdapter(getApplicationContext(), filmsFound);
+            listView.setAdapter(adapter);
+        }
     }
 }

@@ -39,6 +39,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         this.listFilmData = listFilmData;
     }
 
+    public void updateData(List<Film> listFilmData) {
+        this.listFilmData = listFilmData;
+    }
+
     @Override
     public RecyclerHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = inflater.inflate(R.layout.recycler_view_item,parent,false);
@@ -65,32 +69,52 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
 
         if(rate >= 10 && rate < 20){
             holder.star1.setImageResource(R.drawable.ic_star_half_black_18dp);
+            holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 20 && rate < 30){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+            holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 30 && rate < 40){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_half_black_18dp);
+            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 40 && rate < 50){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 50 && rate < 60){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star3.setImageResource(R.drawable.ic_star_half_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 60 && rate < 70){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 70 && rate < 80){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star4.setImageResource(R.drawable.ic_star_half_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 80 && rate < 90){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
         }else if(rate >= 90 && rate < 99){
             holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_black_18dp);

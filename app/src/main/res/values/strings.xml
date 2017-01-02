@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MyDatabaseExample</string>
+    <string-array name="categories">
+        <item>Title</item>
+        <item>Director</item>
+        <item>Protagonist</item>
+        <item>Year</item>
+        <item>Country</item>
+    </string-array>
 </resources>

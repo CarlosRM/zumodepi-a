@@ -89,6 +89,22 @@ public class FilmData {
         return films;
     }
 
+    public List<Film> getFilmsContain(String columnName, String name, String order) {
+        List<Film> films = new ArrayList<>();
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, allColumns, columnName + " LIKE  '%" + name +"%'", null, null, null, order);
+
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Film film = cursorToFilm(cursor);
+            films.add(film);
+            cursor.moveToNext();
+        }
+        // make sure to close the cursor
+        cursor.close();
+
+        return films;
+    }
+
     public List<Film> getAllFilms(String order) {
         List<Film> comments = new ArrayList<>();
 

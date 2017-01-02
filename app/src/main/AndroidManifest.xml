@@ -15,18 +15,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecyclerViewActivity"></activity>
-        <activity android:name=".InsertFilmActivity"></activity>
-        <activity android:name=".SearchActivity"
+        <activity android:name=".RecyclerViewActivity" />
+        <activity android:name=".InsertFilmActivity" />
+        <activity
+            android:name=".SearchActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
-            <!--meta-data android:name="android.app.default_searchable"
-                android:value=".SearchActivity" /-->
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
         </activity>
+
+        <provider
+            android:name=".Predictor"
+            android:authorities="com.example.pr_idi.mydatabaseexample.provider"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -89,6 +89,10 @@ public class FilmData {
         return films;
     }
 
+    public Cursor getFilms(String selection, String[] selectionArgs) {
+        return database.query(MySQLiteHelper.TABLE_FILMS, null, selection, selectionArgs, null, null, null);
+    }
+
     public List<Film> getAllFilms(String order) {
         List<Film> comments = new ArrayList<>();
 

@@ -1,5 +1,6 @@
 package com.example.pr_idi.mydatabaseexample;
 
+import android.app.SearchManager;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -10,7 +11,7 @@ public class Predictor extends ContentProvider {
 
     private MatrixCursor searchResult;
     private FilmData filmData;
-    private static final String[] columns = {"_ID", "SUGGEST_COLUMN_TEXT_1"};
+    private static final String[] columns = {"_ID", SearchManager.SUGGEST_COLUMN_TEXT_1};
 
     public Predictor() {
     }
@@ -34,6 +35,7 @@ public class Predictor extends ContentProvider {
 
     @Override
     public boolean onCreate() {
+        System.out.println("Creando predictor");
         filmData = new FilmData(getContext());
         filmData.open();
         return true;
@@ -42,12 +44,17 @@ public class Predictor extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
+        System.out.println("Query " + selectionArgs[0]);
         searchResult = new MatrixCursor(columns);
-        Cursor cursor = filmData.getFilms(selection, selectionArgs);
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Object[] columnValues = {(int)cursor.getLong(0), cursor.getString(1)};
-            searchResult.addRow(columnValues);
+        if (selectionArgs[0].length() > 0) {
+            Cursor cursor = filmData.getFilms(selectionArgs[0]);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                Object[] columnValues = {(int) cursor.getLong(0), cursor.getString(5)};
+                System.out.println(cursor.getString(1));
+                searchResult.addRow(columnValues);
+                cursor.moveToNext();
+            }
         }
         return searchResult;
     }

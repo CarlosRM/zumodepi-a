@@ -10,7 +10,7 @@ import android.net.Uri;
 public class Predictor extends ContentProvider {
 
     private FilmData filmData;
-    private static final String[] columns = {"_ID", SearchManager.SUGGEST_COLUMN_TEXT_1};
+    private static final String[] columns = {"_ID", SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_INTENT_DATA};
 
     public Predictor() {
     }
@@ -45,13 +45,15 @@ public class Predictor extends ContentProvider {
         System.out.println("Query " + selectionArgs[0]);
         MatrixCursor searchResult = new MatrixCursor(columns);
         if (selectionArgs[0].length() > 0) {
-            Cursor cursor = filmData.getFilms(selectionArgs[0]);
+            Cursor cursor = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST, selectionArgs[0]);
             cursor.moveToFirst();
+            int id = 0;
             while (!cursor.isAfterLast()) {
-                Object[] columnValues = {(int) cursor.getLong(0), cursor.getString(5)};
-                System.out.println(cursor.getString(1));
+                Object[] columnValues = {id, cursor.getString(0), cursor.getString(0)};
+                System.out.println(cursor.getString(0));
                 searchResult.addRow(columnValues);
                 cursor.moveToNext();
+                ++id;
             }
         }
         return searchResult;

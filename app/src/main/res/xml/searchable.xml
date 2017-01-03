@@ -4,5 +4,7 @@
     android:hint="@string/search_hint"
     android:searchSuggestAuthority="com.example.pr_idi.mydatabaseexample.provider"
     android:searchSuggestThreshold="1"
-    android:searchSuggestSelection="p">
+    android:searchSuggestSelection="p"
+    android:searchMode="queryRewriteFromText"
+    android:searchSuggestIntentAction="android.intent.action.VIEW">
 </searchable>

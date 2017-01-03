@@ -87,7 +87,7 @@
                 android:paddingRight="8dp"
                 android:paddingTop="3dp">
 
-                <EditText
+                <!--EditText
                     android:id="@+id/titleSearchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -97,13 +97,20 @@
                     android:paddingLeft="@dimen/activity_horizontal_margin"
                     android:textColor="#FFF"
                     android:textColorHint="#AAFFFFFF"
-                    android:textStyle="italic" />
+                    android:textStyle="italic" /-->
 
-                <ImageView
+                <android.support.v7.widget.SearchView
+                    android:theme="@style/search_view_style"
+                    android:layout_width="match_parent"
+                    android:icon="@drawable/ic_insert_icon"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchView"/>
+
+                <!--ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:alpha="0.7"
-                    android:src="@drawable/ic_search_white_24dp" />
+                    android:src="@drawable/ic_search_white_24dp" /-->
 
             </LinearLayout>
 

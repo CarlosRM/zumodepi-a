@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="search_view_style" parent="Widget.AppCompat.Light.SearchView">
+        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">#9e9e9e</item>
+    </style>
+</resources>

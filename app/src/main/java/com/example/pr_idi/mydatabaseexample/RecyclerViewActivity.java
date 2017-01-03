@@ -1,13 +1,18 @@
 package com.example.pr_idi.mydatabaseexample;
 
 import android.app.AlertDialog;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -16,6 +21,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +34,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
-    private EditText searchView;
+    //private EditText searchView;
+    private SearchView searchView;
     private Spinner categorySpinner;
     private FilmData filmData;
     private List<Film> values;
@@ -73,7 +81,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         currentCriteria = MySQLiteHelper.COLUMN_COUNTRY;
                         break;
                 }
-                if (searchView.getText().toString() == "") {
+                /*if (searchView.getText().toString() == "") {
                     List<Film> filmsFound = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
@@ -82,7 +90,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                             searchView.getText().toString(), currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
-                }
+                }*/
             }
 
             @Override
@@ -114,7 +122,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         currentOrder = MySQLiteHelper.COLUMN_COUNTRY;
                         break;
                 }
-                if (searchView.getText().toString() == "") {
+                /*if (searchView.getText().toString() == "") {
                     List<Film> filmsFound = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
@@ -123,7 +131,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                             searchView.getText().toString(), currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
-                }
+                }*/
             }
 
             @Override
@@ -132,7 +140,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             }
         });
 
-        searchView.addTextChangedListener(new TextWatcher() {
+        /*searchView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -156,7 +164,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
         filmData = new FilmData(this);
         filmData.open();
@@ -199,12 +207,35 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 .show();
     }
 
-    private void initializeViews(){
+    private void initializeViews() {
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) findViewById(R.id.searchView);
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+
+        View searchplate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
+        searchplate.setBackgroundResource(android.R.drawable.dark_header);
+
+        ImageView searchIcon = (ImageView)searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        searchIcon.setImageResource(R.drawable.ic_search_white_24dp);
+
+        ImageView searchCloseIcon = (ImageView)searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+        searchCloseIcon.setImageResource(R.drawable.ic_clear_search);
+
+       // int searchPlateId = searchView.getContext().getResources().getIdentifier("android:id/search_plate", null, null);
+
+        //searchView.findViewById(searchPlateId).setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
+        // Getting the 'search_plate' LinearLayout.
+        //View searchPlate = searchView.findViewById(searchPlateId);
+        // Setting background of 'search_plate' to earlier defined drawable.
+        //searchPlate.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         categorySpinner = (Spinner) findViewById(R.id.categorySpinnerView);
         categorySpinner2 = (Spinner) findViewById(R.id.categorySpinnerView2);
-        searchView = (EditText) findViewById(R.id.titleSearchView);
+        //searchView = (EditText) findViewById(R.id.titleSearchView);
         currentOrder = MySQLiteHelper.COLUMN_YEAR_RELEASE;
         currentCriteria = MySQLiteHelper.COLUMN_TITLE;
         categories = new ArrayList<String>();
@@ -213,5 +244,22 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         categories.add("Protagonist");
         categories.add("Country");
         categories.add("Year");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
+                    query, currentOrder);
+            recyclerAdapter.updateData(filmsFound);
+            recyclerAdapter.notifyDataSetChanged();
+        }
+        else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            String data = intent.getDataString();
+            System.out.println(data);
+            searchView.setQuery(data, true);
+        }
     }
 }

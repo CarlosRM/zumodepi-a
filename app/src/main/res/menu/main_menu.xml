@@ -3,11 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/switchActivity"
-        android:title="Switch To RV" />
+        android:title="Switch To RV"
+        android:icon="@drawable/ic_rv_icon"/>
 
     <item
         android:id="@+id/addFilmButton"
-        android:title="Add Film" />
+        android:title="Add Film"
+        android:icon="@drawable/ic_insert_icon"/>
     <item
         android:id="@+id/searchButton"
         android:icon="@drawable/ic_search"

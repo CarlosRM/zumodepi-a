@@ -15,8 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RecyclerViewActivity" />
-        <activity android:name=".InsertFilmActivity" />
+        <activity android:name=".RecyclerViewActivity"
+                android:launchMode="singleTask"/>
+
+        <activity android:name=".InsertFilmActivity"
+                android:launchMode="singleTask"/>
         <activity
             android:name=".SearchActivity"
             android:launchMode="singleTop">
@@ -34,6 +37,11 @@
             android:authorities="com.example.pr_idi.mydatabaseexample.provider"
             android:enabled="true"
             android:exported="true" />
+
+        <activity
+            android:name=".PruevaNavigation"
+            android:label="@string/title_activity_prueva_navigation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

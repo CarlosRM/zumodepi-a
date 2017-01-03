@@ -1,5 +1,7 @@
 package com.example.pr_idi.mydatabaseexample;
 
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -81,7 +83,13 @@ public class InsertFilmActivity extends AppCompatActivity {
 
 
     }
-    private void setListeners(){
+    private void setListeners() {
+
+        NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
+        DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
+
         insertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

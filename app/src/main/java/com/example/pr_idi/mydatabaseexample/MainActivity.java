@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
     private FilmData filmData;
-    private DrawerLayout navDrawer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,35 +33,9 @@ public class MainActivity extends Activity {
         filmList.setAdapter(adapter);
 
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
-        navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+        DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
 
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.switchActivity: {
-                        Intent myIntent = new Intent(getApplicationContext(), RecyclerViewActivity.class);
-                        startActivity(myIntent);
-                        navDrawer.closeDrawers();
-                        break;
-                    }
-                    case R.id.addFilmButton: {
-                        Intent myIntent = new Intent(getApplicationContext(), InsertFilmActivity.class);
-                        startActivity(myIntent);
-                        navDrawer.closeDrawers();
-                        break;
-                    }
-                    case R.id.searchButton: {
-                        Intent myIntent = new Intent(getApplicationContext(), SearchActivity.class);
-                        startActivity(myIntent);
-                        navDrawer.closeDrawers();
-                        break;
-                    }
-                    default: return false;
-                }
-                return true;
-            }
-        });
+        navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
     }
 
     @Override
@@ -76,5 +49,4 @@ public class MainActivity extends Activity {
         filmData.close();
         super.onPause();
     }
-
 }

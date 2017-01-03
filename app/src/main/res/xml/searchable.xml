@@ -3,5 +3,6 @@
     android:label="@string/app_name"
     android:hint="@string/search_hint"
     android:searchSuggestAuthority="com.example.pr_idi.mydatabaseexample.provider"
+    android:searchSuggestThreshold="1"
     android:searchSuggestSelection="p">
 </searchable>

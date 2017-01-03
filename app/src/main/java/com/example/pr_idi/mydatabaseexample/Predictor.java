@@ -9,7 +9,6 @@ import android.net.Uri;
 
 public class Predictor extends ContentProvider {
 
-    private MatrixCursor searchResult;
     private FilmData filmData;
     private static final String[] columns = {"_ID", SearchManager.SUGGEST_COLUMN_TEXT_1};
 
@@ -35,7 +34,6 @@ public class Predictor extends ContentProvider {
 
     @Override
     public boolean onCreate() {
-        System.out.println("Creando predictor");
         filmData = new FilmData(getContext());
         filmData.open();
         return true;
@@ -45,7 +43,7 @@ public class Predictor extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         System.out.println("Query " + selectionArgs[0]);
-        searchResult = new MatrixCursor(columns);
+        MatrixCursor searchResult = new MatrixCursor(columns);
         if (selectionArgs[0].length() > 0) {
             Cursor cursor = filmData.getFilms(selectionArgs[0]);
             cursor.moveToFirst();

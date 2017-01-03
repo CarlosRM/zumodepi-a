@@ -2,6 +2,8 @@ package com.example.pr_idi.mydatabaseexample;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,6 +42,11 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
         initializeViews();
+
+        NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
+        DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
 
         ArrayAdapter<String> categorySpinnerAdapter = new ArrayAdapter<String>(this, R.layout.category_spinner_style,categories);
         categorySpinnerAdapter.setDropDownViewResource(R.layout.category_spinner_style);

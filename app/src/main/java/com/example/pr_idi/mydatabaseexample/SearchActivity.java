@@ -3,9 +3,11 @@ package com.example.pr_idi.mydatabaseexample;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.util.List;
@@ -27,6 +29,12 @@ public class SearchActivity extends AppCompatActivity {
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView)findViewById(R.id.searchView);
 
+        /*LinearLayout ll = (LinearLayout)searchView.getChildAt(0);
+        LinearLayout ll2 = (LinearLayout)ll.getChildAt(2);
+        LinearLayout ll3 = (LinearLayout)ll2.getChildAt(1);
+        SearchView.SearchAutoComplete autoComplete = ((SearchView.SearchAutoComplete)ll3.getChildAt(0));
+        autoComplete.setHintTextColor(Color.WHITE);*/
+        
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
     }

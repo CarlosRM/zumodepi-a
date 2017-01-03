@@ -9,4 +9,10 @@
     </string-array>
     <string name="search_hint">Search Actor/Actress name</string>
     <string name="search_title">Search</string>
+    <string name="title_activity_prueva_navigation">PruevaNavigation</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

@@ -107,7 +107,7 @@ public class FilmData {
 
 
     public Cursor getFilms(String selection) {
-        return database.query(true, MySQLiteHelper.TABLE_FILMS, null, MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '" + selection + "%'", null, null, null, null, null);
+        return database.query(MySQLiteHelper.TABLE_FILMS, null, MySQLiteHelper.COLUMN_PROTAGONIST + " LIKE '" + selection + "%'", null, null, null, null);
     }
 
     public List<Film> getAllFilms(String order) {

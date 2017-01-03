@@ -1,320 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical" >
-
-<TextView
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textSize="22dp"
-    android:textStyle="bold"
-    android:textColor="#FFF"
-    android:text="New film"
-    android:padding="8dp"
-    android:background="#000"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        >
-    <LinearLayout
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:alpha="0.4"
-        android:background="@android:color/black"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        >
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="12dp"
-                android:textSize="16dp"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:text="Title"
-                android:layout_marginLeft="16dp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:alpha="0.4"
-                android:background="@android:color/black"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="24dp"
-                android:layout_marginLeft="24dp"
-                android:hint="Title"
-                android:id="@+id/insertTitleView"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:textSize="16dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
-            android:text="Director"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:alpha="0.4"
-            android:background="@android:color/black"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
-            android:hint="Director"
-            android:id="@+id/insertDirectorView"/>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:textSize="16dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
-            android:text="Protagonist"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:alpha="0.4"
-            android:background="@android:color/black"/>
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="24dp"
-            android:hint="Protagonist"
-            android:id="@+id/insertProtagonistView"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-       >
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:textSize="16dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
-            android:text="Country"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:alpha="0.4"
-            android:background="@android:color/black"/>
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/countrySpinnerView"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:textSize="16dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
-            android:text="Rate"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:alpha="0.4"
-            android:background="@android:color/black"/>
+            android:background="#000"
+            android:padding="8dp"
+            android:text="New film"
+            android:textColor="#FFF"
+            android:textSize="22dp"
+            android:textStyle="bold" />
 
-            <SeekBar
-                android:id="@+id/insertRateView"
-                android:paddingTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
-                android:max="100"
-                android:layout_weight="0.9"/>
-            <TextView
-                android:id="@+id/rateValueView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="50"
-                android:textAlignment="center"
-                android:layout_weight="0.1"/>
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:padding="8dp">
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="right"
-                    android:id="@+id/star11"
-                    android:src="@drawable/ic_star_border_black_18dp"
-                    android:clickable="true"/>
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="right"
-                    android:id="@+id/star22"
-                    android:src="@drawable/ic_star_border_black_18dp"
-                    android:clickable="true"/>
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="right"
-                    android:id="@+id/star33"
-                    android:src="@drawable/ic_star_border_black_18dp"
-                    android:clickable="true"/>
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="right"
-                    android:id="@+id/star44"
-                    android:src="@drawable/ic_star_border_black_18dp"
-                    android:clickable="true"/>
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:gravity="right"
-                    android:id="@+id/star55"
-                    android:src="@drawable/ic_star_border_black_18dp"
-                    android:clickable="true"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.4"
+                    android:background="@android:color/black" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Title"
+                        android:textColor="#000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/insertTitleView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:hint="Title" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Director"
+                        android:textColor="#000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/insertDirectorView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:hint="Director" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Protagonist"
+                        android:textColor="#000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/insertProtagonistView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:hint="Protagonist" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Country"
+                        android:textColor="#000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/black" />
+
+                    <Spinner
+                        android:id="@+id/countrySpinnerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Rate"
+                        android:textColor="#000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/black" />
+
+                    <SeekBar
+                        android:id="@+id/insertRateView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="0.9"
+                        android:max="100"
+                        android:paddingTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/rateValueView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="50"
+                        android:textAlignment="center" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="8dp">
+
+                        <ImageView
+                            android:id="@+id/star11"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:gravity="right"
+                            android:src="@drawable/ic_star_border_black_18dp" />
+
+                        <ImageView
+                            android:id="@+id/star22"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:gravity="right"
+                            android:src="@drawable/ic_star_border_black_18dp" />
+
+                        <ImageView
+                            android:id="@+id/star33"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:gravity="right"
+                            android:src="@drawable/ic_star_border_black_18dp" />
+
+                        <ImageView
+                            android:id="@+id/star44"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:gravity="right"
+                            android:src="@drawable/ic_star_border_black_18dp" />
+
+                        <ImageView
+                            android:id="@+id/star55"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:clickable="true"
+                            android:gravity="right"
+                            android:src="@drawable/ic_star_border_black_18dp" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="12dp"
+                        android:text="Year"
+                        android:textColor="#000"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.4"
+                        android:background="@android:color/black" />
+
+                    <SeekBar
+                        android:id="@+id/insertYearView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:layout_weight="0.9"
+                        android:max="124"
+                        android:paddingTop="8dp"
+                        android:progress="62" />
+
+                    <TextView
+                        android:id="@+id/yearValueView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.1"
+                        android:text="1958"
+                        android:textAlignment="center" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="16dp">
+
+                    <Button
+                        android:id="@+id/insertButtonView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Film" />
+
+                </LinearLayout>
+
+
             </LinearLayout>
-
-
-
-
+        </ScrollView>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+    <include layout="@layout/navigation_view"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="12dp"
-            android:textSize="16dp"
-            android:textColor="#000"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
-            android:text="Year"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginLeft="16dp"
-            android:alpha="0.4"
-            android:background="@android:color/black"/>
-
-        <SeekBar
-            android:id="@+id/insertYearView"
-            android:paddingTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:progress="62"
-            android:max="124"
-            android:layout_weight="0.9"/>
-        <TextView
-            android:id="@+id/yearValueView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="1958"
-            android:textAlignment="center"
-            android:layout_weight="0.1"/>
-
-
-    </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center_horizontal"
-        android:padding="16dp">
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Film"
-            android:id="@+id/insertButtonView"/>
-
-    </LinearLayout>
-
-
-    </LinearLayout>
-</ScrollView>
-</LinearLayout>
+</android.support.v4.widget.DrawerLayout>
 

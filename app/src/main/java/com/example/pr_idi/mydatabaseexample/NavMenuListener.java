@@ -42,7 +42,7 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
             }
             case R.id.searchButton: {
                 if (!context.getClass().equals(SearchActivity.class)) {
-                    Intent myIntent = new Intent(context, SearchActivity.class);
+                    Intent myIntent = new Intent(context, PruevaNavigation.class);
                     context.startActivity(myIntent);
                 }
                 navDrawer.closeDrawers();

@@ -11,6 +11,11 @@ public class Predictor extends ContentProvider {
 
     private FilmData filmData;
     private static final String[] columns = {"_ID", SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_INTENT_DATA};
+    private static String _currentCriteria;
+
+    public static void setCurrentCriteria(String currentCriteria) {
+        _currentCriteria = currentCriteria;
+    }
 
     public Predictor() {
     }
@@ -45,7 +50,7 @@ public class Predictor extends ContentProvider {
         System.out.println("Query " + selectionArgs[0]);
         MatrixCursor searchResult = new MatrixCursor(columns);
         if (selectionArgs[0].length() > 0) {
-            Cursor cursor = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST, selectionArgs[0]);
+            Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);
             cursor.moveToFirst();
             int id = 0;
             while (!cursor.isAfterLast()) {

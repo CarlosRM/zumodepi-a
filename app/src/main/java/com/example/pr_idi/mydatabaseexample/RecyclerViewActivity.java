@@ -8,14 +8,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -48,13 +51,21 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("ME CREO");
         setContentView(R.layout.activity_recycler_view);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         initializeViews();
 
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
         DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
 
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, navDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        navDrawer.setDrawerListener(toggle);
+        toggle.syncState();
 
         ArrayAdapter<String> categorySpinnerAdapter = new ArrayAdapter<String>(this, R.layout.category_spinner_style,categories);
         categorySpinnerAdapter.setDropDownViewResource(R.layout.category_spinner_style);
@@ -81,16 +92,17 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         currentCriteria = MySQLiteHelper.COLUMN_COUNTRY;
                         break;
                 }
-                /*if (searchView.getText().toString() == "") {
+                if (searchView.getQuery().toString() == "") {
                     List<Film> filmsFound = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
                     List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
-                            searchView.getText().toString(), currentOrder);
+                            searchView.getQuery().toString(), currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
-                }*/
+                }
+                Predictor.setCurrentCriteria(currentCriteria);
             }
 
             @Override
@@ -122,16 +134,16 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         currentOrder = MySQLiteHelper.COLUMN_COUNTRY;
                         break;
                 }
-                /*if (searchView.getText().toString() == "") {
+                if (searchView.getQuery().toString() == "") {
                     List<Film> filmsFound = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
                     List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
-                            searchView.getText().toString(), currentOrder);
+                            searchView.getQuery().toString(), currentOrder);
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
-                }*/
+                }
             }
 
             @Override
@@ -214,8 +226,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
 
-        View searchplate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
-        searchplate.setBackgroundResource(android.R.drawable.dark_header);
+        View searchPlate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
+        searchPlate.setBackgroundResource(android.R.drawable.dark_header);
 
         ImageView searchIcon = (ImageView)searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
         searchIcon.setImageResource(R.drawable.ic_search_white_24dp);
@@ -223,13 +235,16 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         ImageView searchCloseIcon = (ImageView)searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         searchCloseIcon.setImageResource(R.drawable.ic_clear_search);
 
-       // int searchPlateId = searchView.getContext().getResources().getIdentifier("android:id/search_plate", null, null);
-
-        //searchView.findViewById(searchPlateId).setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
-        // Getting the 'search_plate' LinearLayout.
-        //View searchPlate = searchView.findViewById(searchPlateId);
-        // Setting background of 'search_plate' to earlier defined drawable.
-        //searchPlate.setBackgroundResource(android.R.drawable.dialog_holo_light_frame);
+        searchCloseIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchView.setQuery("", false);
+                System.out.println("Closing " + currentOrder);
+                List<Film> allFilms = filmData.getAllFilms(currentOrder);
+                recyclerAdapter.updateData(allFilms);
+                recyclerAdapter.notifyDataSetChanged();
+            }
+        });
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

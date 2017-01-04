@@ -17,7 +17,8 @@
         </activity>
         <activity
             android:name=".RecyclerViewActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -54,7 +55,7 @@
         <activity
             android:name=".PruevaNavigation"
             android:label="@string/title_activity_prueva_navigation"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

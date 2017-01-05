@@ -1,6 +1,5 @@
 package com.example.pr_idi.mydatabaseexample;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
@@ -42,7 +41,7 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
             }
             case R.id.searchButton: {
                 if (!context.getClass().equals(SearchActivity.class)) {
-                    Intent myIntent = new Intent(context, PruevaNavigation.class);
+                    Intent myIntent = new Intent(context, SearchActivity.class);
                     context.startActivity(myIntent);
                 }
                 navDrawer.closeDrawers();

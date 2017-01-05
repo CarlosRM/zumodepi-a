@@ -6,9 +6,12 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.graphics.Color;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,17 +31,16 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         listView = (ListView) findViewById(R.id.searchResultList);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         filmData = new FilmData(this);
         filmData.open();
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) findViewById(R.id.searchView);
-
-        /*LinearLayout ll = (LinearLayout)searchView.getChildAt(0);
-        LinearLayout ll2 = (LinearLayout)ll.getChildAt(2);
-        LinearLayout ll3 = (LinearLayout)ll2.getChildAt(1);
-        SearchView.SearchAutoComplete autoComplete = ((SearchView.SearchAutoComplete)ll3.getChildAt(0));
-        autoComplete.setHintTextColor(Color.WHITE);*/
 
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
@@ -58,5 +60,16 @@ public class SearchActivity extends AppCompatActivity {
             System.out.println(data);
             searchView.setQuery(data, true);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

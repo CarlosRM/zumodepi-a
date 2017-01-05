@@ -1,10 +1,14 @@
 package com.example.pr_idi.mydatabaseexample;
 
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -53,14 +57,13 @@ public class InsertFilmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insert_film);
+
         initializeViews();
         setListeners();
         inputRate.setProgress(50);
         inputCountry.setSelection(defaultCountryValue);
         filmData = new FilmData(this);
         filmData.open();
-
-
 
         inputRate.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -89,6 +92,14 @@ public class InsertFilmActivity extends AppCompatActivity {
         DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
 
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, navDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        navDrawer.setDrawerListener(toggle);
+        toggle.syncState();
 
         insertButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -408,5 +419,14 @@ public class InsertFilmActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

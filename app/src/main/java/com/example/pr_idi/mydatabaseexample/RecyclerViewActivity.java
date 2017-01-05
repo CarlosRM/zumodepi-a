@@ -94,11 +94,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 }
                 if (searchView.getQuery().toString() == "") {
                     List<Film> filmsFound = filmData.getAllFilms(currentOrder);
+                    values = filmsFound;
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
                     List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
                             searchView.getQuery().toString(), currentOrder);
+                    values = filmsFound;
                     recyclerAdapter.updateData(filmsFound);
                     recyclerAdapter.notifyDataSetChanged();
                 }
@@ -241,6 +243,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 searchView.setQuery("", false);
                 System.out.println("Closing " + currentOrder);
                 List<Film> allFilms = filmData.getAllFilms(currentOrder);
+                values = allFilms;
                 recyclerAdapter.updateData(allFilms);
                 recyclerAdapter.notifyDataSetChanged();
             }
@@ -268,6 +271,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             String query = intent.getStringExtra(SearchManager.QUERY);
             List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
                     query, currentOrder);
+            values = filmsFound;
             recyclerAdapter.updateData(filmsFound);
             recyclerAdapter.notifyDataSetChanged();
         }

@@ -31,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.ItemClickCallback{
@@ -258,12 +259,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         //searchView = (EditText) findViewById(R.id.titleSearchView);
         currentOrder = MySQLiteHelper.COLUMN_YEAR_RELEASE;
         currentCriteria = MySQLiteHelper.COLUMN_TITLE;
-        categories = new ArrayList<String>();
-        categories.add("Title");
-        categories.add("Director");
-        categories.add("Protagonist");
-        categories.add("Country");
-        categories.add("Year");
+        categories = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.categories)));
     }
 
     @Override

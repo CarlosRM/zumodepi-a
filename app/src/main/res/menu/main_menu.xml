@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/switchActivity"
-        android:title="Switch To RV"
-        android:icon="@drawable/ic_rv_icon"
-        android:checkable="true" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/main_menu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/switchActivity"
+            android:icon="@drawable/ic_rv_icon"
+            android:title="Switch To RV" />
 
-    <item
-        android:id="@+id/addFilmButton"
-        android:title="Add Film"
-        android:icon="@drawable/ic_insert_icon"
-        android:checkable="true"/>
-    <item
-        android:id="@+id/searchButton"
-        android:icon="@drawable/ic_search"
-        android:title="Search"
-        android:checkable="true"/>
+        <item
+            android:id="@+id/addFilmButton"
+            android:icon="@drawable/ic_insert_icon"
+            android:title="Add Film" />
+        <item
+            android:id="@+id/searchButton"
+            android:icon="@drawable/ic_search"
+            android:title="Search" />
+    </group>
+
+    <group
+        android:id="@+id/extras_menu"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/help_button"
+            android:icon="@drawable/ic_search"
+            android:title="Help" />
+    </group>
 </menu>

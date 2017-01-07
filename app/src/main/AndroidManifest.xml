@@ -40,9 +40,6 @@
             android:name=".InsertFilmActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RecyclerViewActivity"/>
         </activity>
         <activity
             android:name=".SearchActivity"
@@ -71,7 +68,10 @@
             android:name=".PruevaNavigation"
             android:label="@string/title_activity_prueva_navigation"
             android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".HelpActivity">
+        <activity
+            android:name=".HelpActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

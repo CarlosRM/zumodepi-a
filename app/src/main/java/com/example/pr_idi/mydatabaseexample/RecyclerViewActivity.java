@@ -281,4 +281,14 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             searchView.setQuery(data, true);
         }
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
+                searchView.getQuery().toString(), currentOrder);
+        values = filmsFound;
+        recyclerAdapter.updateData(filmsFound);
+        recyclerAdapter.notifyDataSetChanged();
+    }
 }

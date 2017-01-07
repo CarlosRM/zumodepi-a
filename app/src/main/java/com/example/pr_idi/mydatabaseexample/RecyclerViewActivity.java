@@ -54,11 +54,15 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         setContentView(R.layout.activity_recycler_view);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Home");
+        toolbar.setLogo(R.drawable.ic_home);
         setSupportActionBar(toolbar);
         initializeViews();
 
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
         DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
+
+        navView.getMenu().getItem(0).setChecked(true);
 
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
 
@@ -188,8 +192,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         recyclerAdapter = new RecyclerAdapter(values,this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerAdapter.setItemClickCallback(this);
-
-
     }
 
     @Override

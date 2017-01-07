@@ -91,9 +91,12 @@ public class InsertFilmActivity extends AppCompatActivity {
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
         DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
 
+        navView.getMenu().getItem(1).setChecked(true);
+
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Add a new Film");
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

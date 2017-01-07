@@ -58,7 +58,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-        System.out.println("ma");
         database.execSQL(DATABASE_CREATE);
         ContentValues values = createValues("Blade Runner", "Ridley Scott", "Mars", "Me", 3912, 1);
         database.insert(TABLE_FILMS, null,

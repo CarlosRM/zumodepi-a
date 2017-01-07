@@ -30,7 +30,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         listView = (ListView) findViewById(R.id.searchResultList);
-
+        Predictor.setCurrentCriteria(MySQLiteHelper.COLUMN_PROTAGONIST);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

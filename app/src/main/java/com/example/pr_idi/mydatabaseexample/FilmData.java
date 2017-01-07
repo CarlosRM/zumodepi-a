@@ -5,7 +5,6 @@ package com.example.pr_idi.mydatabaseexample;
  * Created by pr_idi on 10/11/16.
  */
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -64,6 +63,15 @@ public class FilmData {
 
         // Return the book
         return newFilm;
+    }
+
+    public void updateRatingFilm(Film film, int rating) {
+        film.setCritics_rate(rating);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(MySQLiteHelper.COLUMN_CRITICS_RATE, rating);
+
+        String[] args = {Long.toString(film.getId())};
+        database.update(MySQLiteHelper.TABLE_FILMS, contentValues, MySQLiteHelper.COLUMN_ID + " = ?", args);
     }
 
     public void deleteFilm(Film film) {

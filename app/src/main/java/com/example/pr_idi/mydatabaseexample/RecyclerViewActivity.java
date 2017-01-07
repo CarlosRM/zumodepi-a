@@ -51,8 +51,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("ME CREO");
         setContentView(R.layout.activity_recycler_view);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initializeViews();

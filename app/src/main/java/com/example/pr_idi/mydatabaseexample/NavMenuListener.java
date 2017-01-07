@@ -7,10 +7,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 
-/**
- * Created by Juan on 03/01/2017.
- */
-
 public class NavMenuListener implements NavigationView.OnNavigationItemSelectedListener {
     private Context context;
     private DrawerLayout navDrawer;
@@ -46,6 +42,13 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
                 }
                 navDrawer.closeDrawers();
                 break;
+            }
+            case R.id.help_button: {
+                if (!context.getClass().equals(HelpActivity.class)) {
+                    Intent myIntent = new Intent(context, HelpActivity.class);
+                    context.startActivity(myIntent);
+                }
+                navDrawer.closeDrawers();
             }
             default: return false;
         }

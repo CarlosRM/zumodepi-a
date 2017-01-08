@@ -49,17 +49,15 @@ public class Predictor extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         System.out.println("Query " + selectionArgs[0]);
         MatrixCursor searchResult = new MatrixCursor(columns);
-        if (selectionArgs[0].length() > 0) {
-            Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);
-            cursor.moveToFirst();
-            int id = 0;
-            while (!cursor.isAfterLast()) {
-                Object[] columnValues = {id, cursor.getString(0), cursor.getString(0)};
-                System.out.println(cursor.getString(0));
-                searchResult.addRow(columnValues);
-                cursor.moveToNext();
-                ++id;
-            }
+        Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);
+        cursor.moveToFirst();
+        int id = 0;
+        while (!cursor.isAfterLast()) {
+            Object[] columnValues = {id, cursor.getString(0), cursor.getString(0)};
+            System.out.println(cursor.getString(0));
+            searchResult.addRow(columnValues);
+            cursor.moveToNext();
+            ++id;
         }
         return searchResult;
     }

@@ -11,6 +11,11 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
     private Context context;
     private DrawerLayout navDrawer;
 
+    public static final int homneButton = 0;
+    public static final int advancedViewButton = 1;
+    public static final int insertFilmButton = 2;
+    public static final int helpButton = 3;
+
     public NavMenuListener(Context context, DrawerLayout navDrawer) {
         this.context = context;
         this.navDrawer = navDrawer;
@@ -19,6 +24,14 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
+            case R.id.home_button: {
+                if (!context.getClass().equals(MainActivity.class)) {
+                    Intent myIntent = new Intent(context, MainActivity.class);
+                    context.startActivity(myIntent);
+                }
+                navDrawer.closeDrawers();
+                break;
+            }
             case R.id.switchActivity: {
                 if (!context.getClass().equals(RecyclerViewActivity.class)) {
                     Intent myIntent = new Intent(context, RecyclerViewActivity.class);
@@ -35,14 +48,14 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
                 navDrawer.closeDrawers();
                 break;
             }
-            case R.id.searchButton: {
+            /*case R.id.searchButton: {
                 if (!context.getClass().equals(SearchActivity.class)) {
                     Intent myIntent = new Intent(context, SearchActivity.class);
                     context.startActivity(myIntent);
                 }
                 navDrawer.closeDrawers();
                 break;
-            }
+            }*/
             case R.id.help_button: {
                 if (!context.getClass().equals(HelpActivity.class)) {
                     Intent myIntent = new Intent(context, HelpActivity.class);

@@ -24,7 +24,7 @@ public class HelpActivity extends AppCompatActivity {
         navDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        navView.getMenu().getItem(3).setChecked(true);
+        navView.getMenu().getItem(NavMenuListener.helpButton).setChecked(true);
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
     }
 }

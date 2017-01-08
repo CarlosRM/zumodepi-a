@@ -99,8 +99,8 @@ public class FilmData {
 
     public List<Film> getFilmsContain(String columnName, String name, String order) {
         List<Film> films = new ArrayList<>();
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, allColumns, columnName + " LIKE  '%" + name + "%'", null, null, null, order);
-
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, allColumns, columnName + " LIKE  '%" + name + "%'", null, null, null, order + " COLLATE NOCASE");
+        //Cursor cursor = database.rawQuery("SELECT * FROM "+MySQLiteHelper.TABLE_FILMS+" WHERE "+columnName + " LIKE  '%" + name + "%' ORDER BY " +order+" COLLATE NOCASE;",null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Film film = cursorToFilm(cursor);
@@ -123,7 +123,7 @@ public class FilmData {
         List<Film> comments = new ArrayList<>();
 
         Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS,
-                allColumns, null, null, null, null, order);
+                allColumns, null, null, null, null, order + " COLLATE NOCASE ASC");
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

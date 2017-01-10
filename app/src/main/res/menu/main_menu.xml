@@ -16,10 +16,6 @@
             android:id="@+id/addFilmButton"
             android:icon="@drawable/ic_insert_icon"
             android:title="Add Film" />
-        <!--item
-            android:id="@+id/searchButton"
-            android:icon="@drawable/ic_search"
-            android:title="Search" /-->
     </group>
 
     <group

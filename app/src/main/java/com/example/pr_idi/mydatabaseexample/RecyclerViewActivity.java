@@ -5,7 +5,6 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,22 +14,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +36,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
-    //private EditText searchView;
     private SearchView searchView;
     private Spinner categorySpinner;
     private FilmData filmData;
@@ -50,7 +44,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     private String currentOrder;
     private String currentCriteria;
     private Spinner categorySpinner2;
-    int removePosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +66,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         navDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        ArrayAdapter<String> categorySpinnerAdapter = new ArrayAdapter<String>(this, R.layout.category_spinner_style,categories);
+        ArrayAdapter<String> categorySpinnerAdapter = new ArrayAdapter<>(this, R.layout.category_spinner_style,categories);
         categorySpinnerAdapter.setDropDownViewResource(R.layout.category_spinner_style);
         categorySpinner.setAdapter(categorySpinnerAdapter);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = categorySpinner.getSelectedItem().toString().toLowerCase();
-                //searchView.setHint("Search by " + selectedItem);
                 switch (selectedItem) {
                     case "title":
                         currentCriteria = MySQLiteHelper.COLUMN_TITLE;
@@ -122,7 +114,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItem = categorySpinner2.getSelectedItem().toString().toLowerCase();
-                //searchView.setHint("Search by " + selectedItem);
                 switch (selectedItem) {
                     case "title":
                         currentOrder = MySQLiteHelper.COLUMN_TITLE;
@@ -140,7 +131,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         currentOrder = MySQLiteHelper.COLUMN_COUNTRY;
                         break;
                 }
-                if (searchView.getQuery().toString() == "") {
+                if (Objects.equals(searchView.getQuery().toString(), "")) {
                     values= filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
@@ -173,9 +164,27 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         final int position = p;
         switch (item.getItemId()) {
             case R.id.modify_button:
-                Film film = values.get(position);
-                filmData.updateRatingFilm(film, 0);
-                recyclerAdapter.notifyDataSetChanged();
+                ModifyRateListener modifyRateListener = new ModifyRateListener(this, values, position, filmData, recyclerAdapter);
+
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle("Modify rate")
+                        .setPositiveButton(android.R.string.yes, modifyRateListener)
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setView(R.layout.modify_rating_view)
+                        .show();
+                RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.rating_bar);
+                modifyRateListener.setRatingBar(ratingBar);
+                final TextView textView = (TextView) dialog.findViewById(R.id.rateValueView);
+                ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+                    @Override
+                    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                        textView.setText(Float.toString(rating*2));
+                    }
+                });
                 break;
             case R.id.delete_button:
                 new AlertDialog.Builder(this)

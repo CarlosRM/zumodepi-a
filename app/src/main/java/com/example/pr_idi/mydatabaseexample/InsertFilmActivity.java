@@ -70,7 +70,6 @@ public class InsertFilmActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 rateValue.setText(Integer.toString(progress));
                 updateStars(progress);
-
             }
 
             @Override
@@ -418,16 +417,5 @@ public class InsertFilmActivity extends AppCompatActivity {
 
         star1State = star2State = star3State = star4State = star5State = 0;
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

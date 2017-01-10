@@ -4,32 +4,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#000"
-        android:padding="8dp"
-        android:text="New film"
-        android:textColor="#FFF"
-        android:textSize="22dp"
-        android:textStyle="bold" />
-
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:paddingTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:alpha="0.4"
-                android:background="@android:color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -177,6 +162,38 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="12dp"
+                    android:text="Year"
+                    android:textColor="#000"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:alpha="0.4"
+                    android:background="@android:color/black" />
+
+                <Spinner
+                    android:id="@+id/yearSpinnerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginRight="24dp" />
+
+            </LinearLayout>
+
+            <!--LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="12dp"
                     android:text="Rate"
                     android:textColor="#000"
                     android:textSize="16dp"
@@ -254,11 +271,7 @@
                         android:clickable="true"
                         android:gravity="right"
                         android:src="@drawable/ic_star_border_black_18dp" />
-                </LinearLayout>
-
-
-            </LinearLayout>
-
+                </LinearLayout-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -269,11 +282,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="12dp"
-                    android:text="Year"
+                    android:text="Rate"
                     android:textColor="#000"
                     android:textSize="16dp"
                     android:textStyle="bold" />
-
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -282,28 +294,24 @@
                     android:alpha="0.4"
                     android:background="@android:color/black" />
 
-                <SeekBar
-                    android:id="@+id/insertYearView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_weight="0.9"
-                    android:max="124"
+                <android.support.v7.widget.AppCompatRatingBar
+                    android:id="@+id/ratingBarInsert"
                     android:paddingTop="8dp"
-                    android:progress="62" />
-
-                <TextView
-                    android:id="@+id/yearValueView"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:numStars="5"
+                    android:stepSize="0.5"
+                    android:layout_gravity="center"
+                    style="@style/custom_rating_bar" />
+                <TextView
+                    android:id="@+id/rateValueInsert"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
                     android:layout_weight="0.1"
-                    android:text="1958"
+                    android:layout_marginTop="10dp"
+                    android:text="0.0"
                     android:textAlignment="center" />
-
-
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="wrap_content"

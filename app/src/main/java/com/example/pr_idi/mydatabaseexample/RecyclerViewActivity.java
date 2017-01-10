@@ -35,6 +35,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.ItemClickCallback{
 
@@ -97,16 +98,14 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         currentCriteria = MySQLiteHelper.COLUMN_COUNTRY;
                         break;
                 }
-                if (searchView.getQuery().toString() == "") {
-                    List<Film> filmsFound = filmData.getAllFilms(currentOrder);
-                    values = filmsFound;
-                    recyclerAdapter.updateData(filmsFound);
+                if (Objects.equals(searchView.getQuery().toString(), "")) {
+                   values = filmData.getAllFilms(currentOrder);
+                    recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
-                    List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
+                    values = filmData.getFilmsContain(currentCriteria,
                             searchView.getQuery().toString(), currentOrder);
-                    values = filmsFound;
-                    recyclerAdapter.updateData(filmsFound);
+                    recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
                 }
                 Predictor.setCurrentCriteria(currentCriteria);
@@ -142,13 +141,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         break;
                 }
                 if (searchView.getQuery().toString() == "") {
-                    List<Film> filmsFound = filmData.getAllFilms(currentOrder);
-                    recyclerAdapter.updateData(filmsFound);
+                    values= filmData.getAllFilms(currentOrder);
+                    recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
-                    List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
+                    values = filmData.getFilmsContain(currentCriteria,
                             searchView.getQuery().toString(), currentOrder);
-                    recyclerAdapter.updateData(filmsFound);
+                    recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
                 }
             }
@@ -158,32 +157,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
             }
         });
-
-        /*searchView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(searchView.getText().toString()=="") {
-                    List<Film> filmsFound = filmData.getAllFilms(currentOrder);
-                    recyclerAdapter.updateData(filmsFound);
-                    recyclerAdapter.notifyDataSetChanged();
-                } else {
-                    List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
-                            searchView.getText().toString(), currentOrder);
-                    recyclerAdapter.updateData(filmsFound);
-                    recyclerAdapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });*/
 
         filmData = new FilmData(this);
         filmData.open();
@@ -213,7 +186,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                                 Film film = values.get(position);
                                 filmData.deleteFilm(film);
                                 values.remove(position);
-                                recyclerAdapter.updateData(values);
                                 recyclerAdapter.notifyDataSetChanged();
                                 Toast.makeText(getApplicationContext(),film.getTitle() + " was deleted successfully", Toast.LENGTH_SHORT).show();
                             }
@@ -249,9 +221,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             @Override
             public void onClick(View v) {
                 searchView.setQuery("", false);
-                System.out.println("Closing " + currentOrder);
-                /*List<Film> allFilms = filmData.getAllFilms(currentOrder);
-                values = allFilms;*/
                 values = filmData.getAllFilms(currentOrder);
                 recyclerAdapter.updateData(values);
                 recyclerAdapter.notifyDataSetChanged();
@@ -273,10 +242,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         setIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
+            values = filmData.getFilmsContain(currentCriteria,
                     query, currentOrder);
-            values = filmsFound;
-            recyclerAdapter.updateData(filmsFound);
+            recyclerAdapter.updateData(values);
             recyclerAdapter.notifyDataSetChanged();
         }
         else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
@@ -291,10 +259,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         super.onResume();
         Predictor.setCurrentCriteria(currentCriteria);
         Predictor.setLowerBound(1);
-        List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
+       values = filmData.getFilmsContain(currentCriteria,
                 searchView.getQuery().toString(), currentOrder);
-        values = filmsFound;
-        recyclerAdapter.updateData(filmsFound);
+        recyclerAdapter.updateData(values);
         recyclerAdapter.notifyDataSetChanged();
     }
 }

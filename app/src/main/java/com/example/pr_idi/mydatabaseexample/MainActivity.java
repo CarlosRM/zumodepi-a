@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(true);
+        searchView.setQueryHint(getString(R.string.search_hint_actor));
 
         return true;
     }
@@ -109,6 +110,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         Predictor.setMainSearchConf();
+        List<Film> values = filmData.getAllFilms(MySQLiteHelper.COLUMN_TITLE);
+        FilmAdapter adapter = new FilmAdapter(getApplicationContext(), values);
+        filmList.setAdapter(adapter);
         super.onResume();
     }
 }

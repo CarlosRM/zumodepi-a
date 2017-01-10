@@ -48,20 +48,21 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
                 navDrawer.closeDrawers();
                 break;
             }
-            /*case R.id.searchButton: {
-                if (!context.getClass().equals(SearchActivity.class)) {
-                    Intent myIntent = new Intent(context, SearchActivity.class);
-                    context.startActivity(myIntent);
-                }
-                navDrawer.closeDrawers();
-                break;
-            }*/
             case R.id.help_button: {
                 if (!context.getClass().equals(HelpActivity.class)) {
                     Intent myIntent = new Intent(context, HelpActivity.class);
                     context.startActivity(myIntent);
                 }
                 navDrawer.closeDrawers();
+                break;
+            }
+            case R.id.about_button: {
+                if (!context.getClass().equals(AboutActivity.class)) {
+                    Intent myIntent = new Intent(context, AboutActivity.class);
+                    context.startActivity(myIntent);
+                }
+                navDrawer.closeDrawers();
+                break;
             }
             default: return false;
         }

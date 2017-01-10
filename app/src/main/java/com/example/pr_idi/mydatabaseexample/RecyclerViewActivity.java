@@ -165,7 +165,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         switch (item.getItemId()) {
             case R.id.modify_button:
                 ModifyRateListener modifyRateListener = new ModifyRateListener(this, values, position, filmData, recyclerAdapter);
-
                 AlertDialog dialog = new AlertDialog.Builder(this)
                         .setTitle("Modify rate")
                         .setPositiveButton(android.R.string.yes, modifyRateListener)

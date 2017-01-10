@@ -27,7 +27,11 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/help_button"
-            android:icon="@drawable/ic_search"
+            android:icon="@drawable/ic_help_black_"
             android:title="Help" />
+        <item
+            android:id="@+id/about_button"
+            android:icon="@drawable/ic_info_black"
+            android:title="About" />
     </group>
 </menu>

@@ -18,6 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -194,32 +196,37 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     }
 
     @Override
-    public void onItemClick(int p) {
-        final int removePosition = p;
-
-        new AlertDialog.Builder(this)
-                .setTitle("Delete film")
-                .setMessage("Are you sure you want to delete this film?")
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Film film = (Film) values.get(removePosition);
-                        filmData.deleteFilm(film);
-                        values.remove(removePosition);
-                        /*recyclerView.removeViewAt(removePosition);
-                        recyclerAdapter.notifyItemRemoved(removePosition);
-                        recyclerAdapter.notifyItemRangeChanged(removePosition, values.size());*/
-                        recyclerAdapter.updateData(values);
-                        recyclerAdapter.notifyDataSetChanged();
-                        Toast.makeText(getApplicationContext(),film.getTitle() + " was deleted successfully", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // do nothing
-                    }
-                })
-                .setIcon(R.drawable.ic_delete_forever_black_24dp)
-                .show();
+    public void onItemClick(MenuItem item, int p) {
+        final int position = p;
+        switch (item.getItemId()) {
+            case R.id.modify_button:
+                Film film = values.get(position);
+                filmData.updateRatingFilm(film, 0);
+                recyclerAdapter.notifyDataSetChanged();
+                break;
+            case R.id.delete_button:
+                new AlertDialog.Builder(this)
+                        .setTitle("Delete film")
+                        .setMessage("Are you sure you want to delete this film?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Film film = values.get(position);
+                                filmData.deleteFilm(film);
+                                values.remove(position);
+                                recyclerAdapter.updateData(values);
+                                recyclerAdapter.notifyDataSetChanged();
+                                Toast.makeText(getApplicationContext(),film.getTitle() + " was deleted successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(R.drawable.ic_delete_forever_black_24dp)
+                        .show();
+                break;
+        }
     }
 
     private void initializeViews() {
@@ -243,9 +250,10 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             public void onClick(View v) {
                 searchView.setQuery("", false);
                 System.out.println("Closing " + currentOrder);
-                List<Film> allFilms = filmData.getAllFilms(currentOrder);
-                values = allFilms;
-                recyclerAdapter.updateData(allFilms);
+                /*List<Film> allFilms = filmData.getAllFilms(currentOrder);
+                values = allFilms;*/
+                values = filmData.getAllFilms(currentOrder);
+                recyclerAdapter.updateData(values);
                 recyclerAdapter.notifyDataSetChanged();
             }
         });
@@ -282,6 +290,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     public void onResume() {
         super.onResume();
         Predictor.setCurrentCriteria(currentCriteria);
+        Predictor.setLowerBound(1);
         List<Film> filmsFound = filmData.getFilmsContain(currentCriteria,
                 searchView.getQuery().toString(), currentOrder);
         values = filmsFound;

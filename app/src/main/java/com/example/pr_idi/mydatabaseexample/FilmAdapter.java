@@ -9,10 +9,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Juan on 30/12/2016.
- */
-
 public class FilmAdapter extends ArrayAdapter<Film> {
     public FilmAdapter(Context context, List<Film> users) {
         super(context, 0, users);

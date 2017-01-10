@@ -2,8 +2,12 @@ package com.example.pr_idi.mydatabaseexample;
 
 import android.content.Context;
 import android.media.Image;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,7 +29,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     private ItemClickCallback itemClickCallback;
 
     public interface ItemClickCallback {
-        void onItemClick(int p);
+        void onItemClick(MenuItem item, int p);
     }
 
     public void setItemClickCallback (final ItemClickCallback itemClickCallback) {
@@ -61,13 +65,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         holder.protagonist.setText(film.getProtagonist());
 
         int rate = film.getCritics_rate();
-        holder.star1.setImageResource(R.drawable.ic_star_border_black_18dp);
-        holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-        holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-        holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-        holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-
-        if(rate >= 10 && rate < 20){
+        if (rate < 10) {
+            holder.star1.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+        } else if(rate >= 10 && rate < 20){
             holder.star1.setImageResource(R.drawable.ic_star_half_black_18dp);
             holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
             holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
@@ -135,7 +139,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         return listFilmData.size();
     }
 
-    class RecyclerHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class RecyclerHolder extends RecyclerView.ViewHolder implements View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
         private TextView title;
         private TextView director;
@@ -149,7 +153,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         private ImageView star4;
         private ImageView star5;
 
-        private ImageView deleteFilm;
+        private ImageView popupMenu;
 
         private View divider;
         private View container;
@@ -168,18 +172,26 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             star3 = (ImageView) itemView.findViewById(R.id.star3);
             star4 = (ImageView) itemView.findViewById(R.id.star4);
             star5 = (ImageView) itemView.findViewById(R.id.star5);
-            deleteFilm = (ImageView) itemView.findViewById(R.id.deleteFilmImageView);
             divider = itemView.findViewById(R.id.lineView);
             container = itemView.findViewById(R.id.containerView);
+            popupMenu = (ImageView) itemView.findViewById(R.id.popupView);
             //container.setOnClickListener(this);
-            deleteFilm.setOnClickListener(this);
+            popupMenu.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            itemClickCallback.onItemClick(getAdapterPosition());
+            PopupMenu popup = new PopupMenu(context, view);
+            popup.inflate(R.menu.popup_menu);
+            popup.setOnMenuItemClickListener(this);
+            popup.show();
         }
 
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            itemClickCallback.onItemClick(item, getAdapterPosition());
+            return true;
+        }
     }
 
 

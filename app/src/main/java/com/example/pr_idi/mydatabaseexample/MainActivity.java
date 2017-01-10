@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        //toolbar.setLogo(R.drawable.ic_home);
+        toolbar.setTitle("Home");
+        toolbar.setLogo(R.drawable.ic_home);
         setSupportActionBar(toolbar);
 
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
@@ -53,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
         // use the SimpleCursorAdapter to show the
         // elements in a ListView
         filmList = (ListView) findViewById(R.id.list);
-        ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, values);
+        FilmAdapter adapter = new FilmAdapter(this, values);
         filmList.setAdapter(adapter);
     }
 
@@ -64,9 +65,24 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_search_menu, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        MenuItem searchItem = menu.findItem(R.id.search_action_menu);
-        searchView =
-                (SearchView) MenuItemCompat.getActionView(searchItem);
+        MenuItem searchItem =  menu.findItem(R.id.search_action_menu);
+
+        MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                List<Film> values = filmData.getAllFilms(MySQLiteHelper.COLUMN_TITLE);
+                FilmAdapter adapter = new FilmAdapter(getApplicationContext(), values);
+                filmList.setAdapter(adapter);
+                return true;
+            }
+        });
+
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(true);
 
@@ -78,10 +94,9 @@ public class MainActivity extends AppCompatActivity {
         setIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            List<Film> filmsFound = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
+            List<Film> values = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
                     query, null);
-            ArrayAdapter<Film> adapter = new ArrayAdapter<>(this,
-                    android.R.layout.simple_list_item_1, filmsFound);
+            FilmAdapter adapter = new FilmAdapter(getApplicationContext(), values);
             filmList.setAdapter(adapter);
         }
         else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
@@ -93,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        Predictor.setCurrentCriteria(MySQLiteHelper.COLUMN_PROTAGONIST);
+        Predictor.setMainSearchConf();
         super.onResume();
     }
 }

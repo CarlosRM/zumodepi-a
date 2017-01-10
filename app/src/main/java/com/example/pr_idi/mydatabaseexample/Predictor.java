@@ -12,9 +12,19 @@ public class Predictor extends ContentProvider {
     private FilmData filmData;
     private static final String[] columns = {"_ID", SearchManager.SUGGEST_COLUMN_TEXT_1, SearchManager.SUGGEST_COLUMN_INTENT_DATA};
     private static String _currentCriteria;
+    private static int _lowerBound = 0;
 
     public static void setCurrentCriteria(String currentCriteria) {
         _currentCriteria = currentCriteria;
+    }
+
+    public static void setLowerBound(int lowerBound) {
+        _lowerBound = lowerBound;
+    }
+
+    public static void setMainSearchConf() {
+        _currentCriteria = MySQLiteHelper.COLUMN_PROTAGONIST;
+        _lowerBound = 0;
     }
 
     public Predictor() {
@@ -49,15 +59,17 @@ public class Predictor extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         System.out.println("Query " + selectionArgs[0]);
         MatrixCursor searchResult = new MatrixCursor(columns);
-        Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);
-        cursor.moveToFirst();
-        int id = 0;
-        while (!cursor.isAfterLast()) {
-            Object[] columnValues = {id, cursor.getString(0), cursor.getString(0)};
-            System.out.println(cursor.getString(0));
-            searchResult.addRow(columnValues);
-            cursor.moveToNext();
-            ++id;
+        if (selectionArgs[0].length() >= _lowerBound) {
+            Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);
+            cursor.moveToFirst();
+            int id = 0;
+            while (!cursor.isAfterLast()) {
+                Object[] columnValues = {id, cursor.getString(0), cursor.getString(0)};
+                System.out.println(cursor.getString(0));
+                searchResult.addRow(columnValues);
+                cursor.moveToNext();
+                ++id;
+            }
         }
         return searchResult;
     }

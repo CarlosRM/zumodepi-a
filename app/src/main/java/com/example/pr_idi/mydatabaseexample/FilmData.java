@@ -115,9 +115,9 @@ public class FilmData {
     }
 
 
-    public Cursor getFilmsContain(String columnName, String selection) {
+    public Cursor getFilmsContainPredictor(String columnName, String selection, String order) {
         String[] columns = {columnName};
-        return database.query(true, MySQLiteHelper.TABLE_FILMS, columns, columnName + " LIKE '%" + selection + "%'", null, null, null, null, null);
+        return database.query(true, MySQLiteHelper.TABLE_FILMS, columns, columnName + " LIKE '%" + selection + "%'", null, null, null, order + " COLLATE NOCASE", null);
     }
 
     public List<Film> getAllFilms(String order) {

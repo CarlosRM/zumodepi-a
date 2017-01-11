@@ -59,7 +59,7 @@ public class Predictor extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         MatrixCursor searchResult = new MatrixCursor(columns);
         if (selectionArgs[0].length() >= _lowerBound) {
-            Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);
+            Cursor cursor = filmData.getFilmsContainPredictor(_currentCriteria, selectionArgs[0], _currentCriteria);
             cursor.moveToFirst();
             int id = 0;
             while (!cursor.isAfterLast()) {

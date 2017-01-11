@@ -1,5 +1,7 @@
 package com.example.pr_idi.mydatabaseexample;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -185,6 +187,7 @@ public class InsertFilmActivity extends AppCompatActivity {
         inputTitle = (EditText) findViewById(R.id.insertTitleView);
 
         inputCountry = (Spinner) findViewById(R.id.countrySpinnerView);
+        inputCountry.getBackground().setColorFilter(Color.parseColor("#AAAAAA"), PorterDuff.Mode.SRC_ATOP);
         //Populate spinner
         Locale[] locale = Locale.getAvailableLocales();
         ArrayList<String> countries = new ArrayList<String>();
@@ -201,6 +204,7 @@ public class InsertFilmActivity extends AppCompatActivity {
         inputCountry.setAdapter(adapter);
 
         inputYear = (Spinner) findViewById(R.id.yearSpinnerView);
+        inputYear.getBackground().setColorFilter(Color.parseColor("#AAAAAA"), PorterDuff.Mode.SRC_ATOP);
         Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
         ArrayList<String> years = new ArrayList<>();
         for (int i = currentYear; i >= 1896; --i) {

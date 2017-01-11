@@ -45,7 +45,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     private String currentCriteria;
     private Spinner categorySpinner2;
     private boolean searchSubstring;
-    private boolean lastSearchSubstring;
     private static boolean filmInserted = false;
 
     @Override
@@ -53,7 +52,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
         searchSubstring = true;
-        lastSearchSubstring = true;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Advanced View");
@@ -192,7 +190,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                     }
                 });
                 Film film = values.get(position);
-                float rate = (float)film.getCritics_rate()/2;
+                float rate = (float) film.getCritics_rate() / 2;
                 ratingBar.setRating(rate);
                 break;
             case R.id.delete_button:
@@ -282,10 +280,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
             if (searchSubstring) {
                 values = filmData.getFilmsContain(currentCriteria,
                         query, currentOrder);
-                lastSearchSubstring = true;
             } else {
                 values = filmData.getFilms(currentCriteria, query, currentOrder);
-                lastSearchSubstring = false;
                 searchSubstring = true;
             }
             recyclerAdapter.updateData(values);
@@ -307,13 +303,8 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         Predictor.setCurrentCriteria(currentCriteria);
         Predictor.setLowerBound(1);
         if (filmInserted) {
-            if (lastSearchSubstring) {
-                values = filmData.getFilmsContain(currentCriteria,
-                        searchView.getQuery().toString(), currentOrder);
-            }
-            else {
-                values = filmData.getFilms(currentCriteria, searchView.getQuery().toString(), currentOrder);
-            }
+            values = filmData.getFilmsContain(currentCriteria,
+                    searchView.getQuery().toString(), currentOrder);
             recyclerAdapter.updateData(values);
             recyclerAdapter.notifyDataSetChanged();
             filmInserted = false;

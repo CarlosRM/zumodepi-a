@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private SearchView searchView;
     private ListView filmList;
     private boolean searchSubstring;
-    private boolean lastSearchSubstring;
     private static boolean filmInserted = false;
 
     @Override
@@ -38,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setLogo(R.drawable.ic_home);
         setSupportActionBar(toolbar);
         searchSubstring = true;
-        lastSearchSubstring = true;
 
         NavigationView navView = (NavigationView) findViewById(R.id.navMenu);
         DrawerLayout navDrawer = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -55,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
+
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.main_search_menu, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        MenuItem searchItem =  menu.findItem(R.id.search_action_menu);
+        MenuItem searchItem = menu.findItem(R.id.search_action_menu);
 
         MenuItemCompat.setOnActionExpandListener(searchItem, new MenuItemCompat.OnActionExpandListener() {
             @Override
@@ -117,17 +116,13 @@ public class MainActivity extends AppCompatActivity {
             if (searchSubstring) {
                 values = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
                         query, MySQLiteHelper.COLUMN_TITLE);
-                lastSearchSubstring = true;
-            }
-            else {
+            } else {
                 values = filmData.getFilms(MySQLiteHelper.COLUMN_PROTAGONIST, query, MySQLiteHelper.COLUMN_TITLE);
                 searchSubstring = true;
-                lastSearchSubstring = false;
             }
             FilmAdapter adapter = new FilmAdapter(this, values);
             filmList.setAdapter(adapter);
-        }
-        else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+        } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             searchSubstring = false;
             String data = intent.getDataString();
             searchView.setQuery(data, true);
@@ -142,14 +137,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         Predictor.setMainSearchConf();
         if (filmInserted) {
-            List<Film> values;
-            if (lastSearchSubstring) {
-                values = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
-                        searchView.getQuery().toString(), MySQLiteHelper.COLUMN_TITLE);
-            }
-            else {
-                values = filmData.getFilms(MySQLiteHelper.COLUMN_PROTAGONIST, searchView.getQuery().toString(), MySQLiteHelper.COLUMN_TITLE);
-            }
+            List<Film> values = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
+                    searchView.getQuery().toString(), MySQLiteHelper.COLUMN_TITLE);
             FilmAdapter adapter = new FilmAdapter(this, values);
             filmList.setAdapter(adapter);
             filmInserted = false;

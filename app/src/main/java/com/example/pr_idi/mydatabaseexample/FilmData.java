@@ -87,7 +87,6 @@ public class FilmData {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Film film = cursorToFilm(cursor);
-            System.out.println(film);
             films.add(film);
             cursor.moveToNext();
         }
@@ -104,7 +103,6 @@ public class FilmData {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Film film = cursorToFilm(cursor);
-            System.out.println(film);
             films.add(film);
             cursor.moveToNext();
         }

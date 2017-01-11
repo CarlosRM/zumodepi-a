@@ -64,7 +64,6 @@ public class Predictor extends ContentProvider {
             int id = 0;
             while (!cursor.isAfterLast()) {
                 Object[] columnValues = {id, cursor.getString(0), cursor.getString(0)};
-                System.out.println(cursor.getString(0));
                 searchResult.addRow(columnValues);
                 cursor.moveToNext();
                 ++id;

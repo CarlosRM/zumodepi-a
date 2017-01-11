@@ -161,12 +161,12 @@ public class InsertFilmActivity extends AppCompatActivity {
                     filmData.createFilm(inputTitle.getText().toString(), inputDirector.getText().toString(),
                             inputCountry.getSelectedItem().toString(), inputProtagonist.getText().toString(),
                             Integer.valueOf(inputYear.getSelectedItem().toString()),
-                            (int) (inputRate.getRating() * 20));
+                            (int) (inputRate.getRating() * 2));
                             inputDirector.setText("");
                             inputProtagonist.setText("");
                             inputTitle.setText("");
-
-
+                    RecyclerViewActivity.insertFilm();
+                    MainActivity.insertFilm();
                     Toast.makeText(getApplicationContext(), "Film added successfully", Toast.LENGTH_SHORT).show();
                 }
             }

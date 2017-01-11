@@ -22,7 +22,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CRITICS_RATE = "critics_rate";
 
     private static final String DATABASE_NAME = "films.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 1;
 
     // Database creation sql statement
     private static final String DATABASE_CREATE = "create table " + TABLE_FILMS + "( "
@@ -59,16 +59,16 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);
-        ContentValues values = createValues("Blade Runner", "Ridley Scott", "Mars", "Me", 3912, 1);
+        ContentValues values = createValues("Blade Runner", "Ridley Scott", "Estados Unidos", "Harrisond Ford", 1982, 9);
         database.insert(TABLE_FILMS, null,
                 values);
-        values = createValues("Rocky Horror Picture Show", "Jim Sharman", "Earth", "you", 2222, 2);
+        values = createValues("Rocky Horror Picture Show", "Jim Sharman", "Reino Unido", "Susan Sarandon", 1975, 7);
         database.insert(TABLE_FILMS, null,
                 values);
-        values = createValues("The Godfather", "Francis Ford Coppola", "Jupiter", "he", 4784, 3);
+        values = createValues("The Godfather", "Francis Ford Coppola", "Estados Unidos", "Marlon Brando", 1972, 9);
         database.insert(TABLE_FILMS, null,
                 values);
-        values = createValues("Toy Story", "John Lasseter", "Pluto", "it", 1201, 4);
+        values = createValues("Toy Story", "John Lasseter", "Estados Unidos", "Tom Hanks", 1995, 8);
         database.insert(TABLE_FILMS, null,
                 values);
     }

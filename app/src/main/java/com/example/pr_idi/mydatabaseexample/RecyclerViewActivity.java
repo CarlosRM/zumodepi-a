@@ -301,9 +301,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     @Override
     public void onResume() {
         super.onResume();
+        Predictor.setCurrentCriteria(currentCriteria);
+        Predictor.setLowerBound(1);
         if (filmInserted) {
-            Predictor.setCurrentCriteria(currentCriteria);
-            Predictor.setLowerBound(1);
             values = filmData.getFilmsContain(currentCriteria,
                     searchView.getQuery().toString(), currentOrder);
             recyclerAdapter.updateData(values);

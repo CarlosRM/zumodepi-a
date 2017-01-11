@@ -25,8 +25,10 @@ public class FilmAdapter extends ArrayAdapter<Film> {
         }
         // Lookup view for data population
         TextView tvName = (TextView) convertView.findViewById(R.id.filmTextViewItem);
+        TextView authorName = (TextView)convertView.findViewById(R.id.authorTextViewItem);
         // Populate the data into the template view using the data object
         tvName.setText(film.getTitle());
+        authorName.setText(film.getDirector());
         // Return the completed view to render on screen
         return convertView;
     }

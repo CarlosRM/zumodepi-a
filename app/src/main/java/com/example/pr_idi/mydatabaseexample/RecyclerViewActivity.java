@@ -53,7 +53,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
         searchSubstring = true;
-        lastSearchSubstring = false;
+        lastSearchSubstring = true;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Advanced View");

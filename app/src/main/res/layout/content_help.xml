@@ -16,19 +16,29 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:text="Help"
-        android:textColor="#000"
-        android:textSize="24dp"/>
+
     <TextView
         android:paddingTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome to 'InsertAppTitle', the best movie app in the market right now! Here are a few tips to help you get familiar with all the options 'InsertAppTitle' offers:"
-        />
+        android:text="Welcome to Film Viewer, the best movie app in the market right now! Here are a few tips to help you get familiar with all the options Film Viewer offers:"
+        android:paddingBottom="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App menu"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:paddingTop="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.9"
+        android:background="@android:color/black" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +52,7 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Swipe right to open the Navigation Drawer and choose one from the many options you have available."/>
+            android:text="Swipe right or click on the top left icon to open the App Menu and choose one from the many options you have available."/>
     </LinearLayout>
 
     <!--LinearLayout
@@ -61,6 +71,21 @@
             android:text="Swipe right to open the Navigation Drawer and choose one from the many options you have available."/>
     </LinearLayout-->
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Advanced Search"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:paddingTop="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.9"
+        android:background="@android:color/black" />
+
     <ImageView
         android:paddingTop="8dp"
         android:layout_marginLeft="16dp"
@@ -68,14 +93,64 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/searchbar_screenshot"
-        android:alpha="0.7"/>
+        android:alpha="0.8"/>
     <TextView
         android:paddingTop="16dp"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Use the search box on top of the list of films to search for any film you want! You can use the two dropdown lists on top of it to select the type of search (by Title, by Protagonist...) and to order the results the way you prefer!"/>
+        android:text="Use the search box on top of the Advanced View to search for any film you want! You can use the two dropdown lists on top of it to select the type of search (by Title, by Protagonist...) and to order the results the way you prefer!"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add a new film"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:paddingTop="8dp"/>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.9"
+        android:background="@android:color/black" />
+
+    <TextView
+        android:paddingTop="16dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="After you select 'Add Film' on the App Menu, you'll be able to add a new film to the database. You must inpust all the information about it and use the spinners to selecet both the country and the year. Also, you'll have to provide a rating for that film."/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modify rating and delete films"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:textColor="#000"
+        android:paddingTop="8dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:alpha="0.9"
+        android:background="@android:color/black" />
+
+    <ImageView
+        android:paddingTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/popupmenu2"
+        android:alpha="0.8"/>
+
+    <TextView
+        android:paddingTop="16dp"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tap on the icon on the top right corner of each film in the Advanced View to open a popup menu, where you can select to either modify the rating of said film, or delete it."/>
 </LinearLayout>
 </ScrollView>

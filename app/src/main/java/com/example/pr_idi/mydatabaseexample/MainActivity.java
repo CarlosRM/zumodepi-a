@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         List<Film> values = filmData.getAllFilms(MySQLiteHelper.COLUMN_TITLE);
 
-        // use the SimpleCursorAdapter to show the
-        // elements in a ListView
         filmList = (ListView) findViewById(R.id.list);
         FilmAdapter adapter = new FilmAdapter(this, values);
         filmList.setAdapter(adapter);
@@ -95,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
         setIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+            System.out.println(query);
             List<Film> values = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
-                    query, null);
-            FilmAdapter adapter = new FilmAdapter(getApplicationContext(), values);
+                    query, MySQLiteHelper.COLUMN_TITLE);
+            FilmAdapter adapter = new FilmAdapter(this, values);
             filmList.setAdapter(adapter);
         }
         else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             String data = intent.getDataString();
-            System.out.println(data);
             searchView.setQuery(data, true);
         }
     }
@@ -110,9 +108,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         Predictor.setMainSearchConf();
-        List<Film> values = filmData.getAllFilms(MySQLiteHelper.COLUMN_TITLE);
-        FilmAdapter adapter = new FilmAdapter(getApplicationContext(), values);
-        filmList.setAdapter(adapter);
         super.onResume();
     }
 }

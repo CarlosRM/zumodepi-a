@@ -18,6 +18,7 @@ public class FilmAdapter extends ArrayAdapter<Film> {
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
         Film film = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.film_list_item, parent, false);

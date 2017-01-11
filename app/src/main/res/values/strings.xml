@@ -17,6 +17,6 @@
     <string name="home_button_menu">Home</string>
     <string name="about_version">Version 1.0</string>
     <string name="about_names">Juan Miguel de Haro - Carlos Roldán</string>
-    <string name="about_assignatura">FIB - UPC</string>
-    <string name="about_quadrimestre">-2017-</string>
+    <string name="about_assignatura">Interacció i Disseny d\'Interfícies - FIB</string>
+    <string name="about_quadrimestre">- 2017 -</string>
 </resources>

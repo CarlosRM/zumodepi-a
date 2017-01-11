@@ -23,6 +23,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -221,6 +222,23 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if(searchView.getQuery().length() == 0) {
+                    values = filmData.getAllFilms(currentOrder);
+                    recyclerAdapter.updateData(values);
+                    recyclerAdapter.notifyDataSetChanged();
+                }
+                return false;
+            }
+        });
+
         View searchPlate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
         searchPlate.setBackgroundResource(android.R.drawable.dark_header);
 
@@ -247,7 +265,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         categorySpinner.getBackground().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
         categorySpinner2 = (Spinner) findViewById(R.id.categorySpinnerView2);
         categorySpinner2.getBackground().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
-        //searchView = (EditText) findViewById(R.id.titleSearchView);
         currentOrder = MySQLiteHelper.COLUMN_YEAR_RELEASE;
         currentCriteria = MySQLiteHelper.COLUMN_TITLE;
         categories = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.categories)));
@@ -256,7 +273,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
-        Toast.makeText(this,"LOL",Toast.LENGTH_SHORT).show();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
 
             String query = intent.getStringExtra(SearchManager.QUERY);
@@ -267,7 +283,6 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         }
         else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
             String data = intent.getDataString();
-            System.out.println(data);
             searchView.setQuery(data, true);
         }
     }

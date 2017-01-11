@@ -57,7 +57,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void onBindViewHolder(RecyclerHolder holder, int position) {
         Film film = listFilmData.get(position);
 
-        if(position == 0)holder.divider.setVisibility(View.INVISIBLE);
+        if (position == 0) holder.divider.setVisibility(View.INVISIBLE);
+        else holder.divider.setVisibility(View.VISIBLE);
+
         holder.title.setText(film.getTitle());
         holder.director.setText(film.getDirector());
         holder.country.setText(" - " + film.getCountry());

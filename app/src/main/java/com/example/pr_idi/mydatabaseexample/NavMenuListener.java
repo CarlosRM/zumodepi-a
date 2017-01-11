@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.SearchView;
 import android.view.MenuItem;
 
 public class NavMenuListener implements NavigationView.OnNavigationItemSelectedListener {
@@ -14,7 +13,6 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
     public static final int homneButton = 0;
     public static final int advancedViewButton = 1;
     public static final int insertFilmButton = 2;
-    public static final int helpButton = 3;
 
     public NavMenuListener(Context context, DrawerLayout navDrawer) {
         this.context = context;

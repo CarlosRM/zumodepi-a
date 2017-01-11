@@ -57,7 +57,6 @@ public class Predictor extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
-        System.out.println("Query " + selectionArgs[0]);
         MatrixCursor searchResult = new MatrixCursor(columns);
         if (selectionArgs[0].length() >= _lowerBound) {
             Cursor cursor = filmData.getFilmsContain(_currentCriteria, selectionArgs[0]);

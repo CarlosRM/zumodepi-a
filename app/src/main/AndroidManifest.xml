@@ -5,8 +5,8 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/logologo2"
-        android:supportsRtl="true"
         android:label="Film Viewer"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -14,10 +14,8 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
+
                 <action android:name="android.intent.action.SEARCH" />
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
@@ -43,22 +41,6 @@
             android:name=".InsertFilmActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SearchActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RecyclerViewActivity" />
-        </activity>
 
         <provider
             android:name=".Predictor"
@@ -67,17 +49,12 @@
             android:exported="true" />
 
         <activity
-            android:name=".PruevaNavigation"
-            android:label="@string/title_activity_prueva_navigation"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".HelpActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AboutActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

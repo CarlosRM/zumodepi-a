@@ -1,31 +1,22 @@
 package com.example.pr_idi.mydatabaseexample;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-/**
- * Created by Carlos on 29/12/2016.
- */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder> {
 
     private List<Film> listFilmData;
     private LayoutInflater inflater;
     private Context context;
-
-
     private ItemClickCallback itemClickCallback;
 
     public interface ItemClickCallback {
@@ -35,7 +26,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
     public void setItemClickCallback (final ItemClickCallback itemClickCallback) {
         this.itemClickCallback = itemClickCallback;
     }
-
 
     public RecyclerAdapter(List<Film> listFilmData, Context context){
         this.context = context;
@@ -158,8 +148,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         private ImageView popupMenu;
 
         private View divider;
-        private View container;
-
 
         public RecyclerHolder(View itemView) {
             super(itemView);
@@ -175,9 +163,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
             star4 = (ImageView) itemView.findViewById(R.id.star4);
             star5 = (ImageView) itemView.findViewById(R.id.star5);
             divider = itemView.findViewById(R.id.lineView);
-            container = itemView.findViewById(R.id.containerView);
             popupMenu = (ImageView) itemView.findViewById(R.id.popupView);
-            //container.setOnClickListener(this);
             popupMenu.setOnClickListener(this);
         }
 

@@ -1,32 +1,24 @@
 package com.example.pr_idi.mydatabaseexample;
 
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.EventListener;
 import java.util.Locale;
 
 public class InsertFilmActivity extends AppCompatActivity {
@@ -41,18 +33,6 @@ public class InsertFilmActivity extends AppCompatActivity {
     private TextView rateValue;
     private FilmData filmData;
     private Button insertButton;
-
-    private ImageView star1;
-    private ImageView star2;
-    private ImageView star3;
-    private ImageView star4;
-    private ImageView star5;
-
-    private int star1State;
-    private int star2State;
-    private int star3State;
-    private int star4State;
-    private int star5State;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +77,7 @@ public class InsertFilmActivity extends AppCompatActivity {
                     filmData.createFilm(inputTitle.getText().toString(), inputDirector.getText().toString(),
                             inputCountry.getSelectedItem().toString(), inputProtagonist.getText().toString(),
                             Integer.valueOf(inputYear.getSelectedItem().toString()),
-                            (int) (inputRate.getRating()*20));
+                            (int) (inputRate.getRating() * 20));
 
                     Toast.makeText(getApplicationContext(), "Film added successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -107,38 +87,38 @@ public class InsertFilmActivity extends AppCompatActivity {
         inputRate.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                rateValue.setText(Float.toString(rating*2));
+                rateValue.setText(Float.toString(rating * 2));
             }
         });
 
     }
 
-    private void initializeViews(){
+    private void initializeViews() {
         inputTitle = (EditText) findViewById(R.id.insertTitleView);
 
         inputCountry = (Spinner) findViewById(R.id.countrySpinnerView);
-            //Populate spinner
-            Locale[] locale = Locale.getAvailableLocales();
-            ArrayList<String> countries = new ArrayList<String>();
-            String country;
-            for( Locale loc : locale ){
-                country = loc.getDisplayCountry();
-                if( country.length() > 0 && !countries.contains(country) ){
-                    countries.add( country );
-                }
+        //Populate spinner
+        Locale[] locale = Locale.getAvailableLocales();
+        ArrayList<String> countries = new ArrayList<String>();
+        String country;
+        for (Locale loc : locale) {
+            country = loc.getDisplayCountry();
+            if (country.length() > 0 && !countries.contains(country)) {
+                countries.add(country);
             }
-            Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
-            defaultCountryValue = countries.indexOf(this.getResources().getConfiguration().locale.getDisplayCountry());
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.country_spinner_style, countries);
-            inputCountry.setAdapter(adapter);
+        }
+        Collections.sort(countries, String.CASE_INSENSITIVE_ORDER);
+        defaultCountryValue = countries.indexOf(this.getResources().getConfiguration().locale.getDisplayCountry());
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.country_spinner_style, countries);
+        inputCountry.setAdapter(adapter);
 
         inputYear = (Spinner) findViewById(R.id.yearSpinnerView);
-            Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            ArrayList<String> years = new ArrayList<>();
-            for(int i = currentYear;i>=1896;--i){
-                years.add(Integer.toString(i));
-            }
-        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(this,R.layout.country_spinner_style,years);
+        Integer currentYear = Calendar.getInstance().get(Calendar.YEAR);
+        ArrayList<String> years = new ArrayList<>();
+        for (int i = currentYear; i >= 1896; --i) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> yearAdapter = new ArrayAdapter<String>(this, R.layout.country_spinner_style, years);
         inputYear.setAdapter(yearAdapter);
 
         inputDirector = (EditText) findViewById(R.id.insertDirectorView);
@@ -146,9 +126,5 @@ public class InsertFilmActivity extends AppCompatActivity {
         inputRate = (RatingBar) findViewById(R.id.ratingBarInsert);
         rateValue = (TextView) findViewById(R.id.rateValueInsert);
         insertButton = (Button) findViewById(R.id.insertButtonView);
-
-
-        star1State = star2State = star3State = star4State = star5State = 0;
-
     }
 }

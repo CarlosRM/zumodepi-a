@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +17,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -241,7 +244,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         categorySpinner = (Spinner) findViewById(R.id.categorySpinnerView);
+        categorySpinner.getBackground().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
         categorySpinner2 = (Spinner) findViewById(R.id.categorySpinnerView2);
+        categorySpinner2.getBackground().setColorFilter(Color.parseColor("#FFFFFF"), PorterDuff.Mode.SRC_ATOP);
         //searchView = (EditText) findViewById(R.id.titleSearchView);
         currentOrder = MySQLiteHelper.COLUMN_YEAR_RELEASE;
         currentCriteria = MySQLiteHelper.COLUMN_TITLE;
@@ -251,7 +256,9 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     @Override
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
+        Toast.makeText(this,"LOL",Toast.LENGTH_SHORT).show();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+
             String query = intent.getStringExtra(SearchManager.QUERY);
             values = filmData.getFilmsContain(currentCriteria,
                     query, currentOrder);

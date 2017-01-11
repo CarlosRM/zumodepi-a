@@ -41,13 +41,31 @@
                     android:alpha="0.4"
                     android:background="@android:color/black" />
 
-                <EditText
-                    android:id="@+id/insertTitleView"
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:hint="Title" />
+                    >
+
+                    <EditText
+                        android:id="@+id/insertTitleView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:hint="Title" />
+
+                    <Button
+                        android:visibility="invisible"
+                        android:id="@+id/deleteTitleButon"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="20dp"
+                        android:alpha="0.5"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/ic_clear_black_24dp" />
+
+                </FrameLayout>
+
 
             </LinearLayout>
 
@@ -75,13 +93,30 @@
                     android:alpha="0.4"
                     android:background="@android:color/black" />
 
-                <EditText
-                    android:id="@+id/insertDirectorView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:hint="Director" />
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/insertDirectorView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:hint="Director" />
+
+                    <Button
+                        android:visibility="invisible"
+                        android:id="@+id/deleteDirectorButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="20dp"
+                        android:alpha="0.5"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/ic_clear_black_24dp" />
+
+                </FrameLayout>
+
 
             </LinearLayout>
 
@@ -110,13 +145,29 @@
                     android:alpha="0.4"
                     android:background="@android:color/black" />
 
-                <EditText
-                    android:id="@+id/insertProtagonistView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="24dp"
-                    android:layout_marginRight="24dp"
-                    android:hint="Protagonist" />
+                <FrameLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/insertProtagonistView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:hint="Protagonist" />
+
+                    <Button
+                        android:visibility="invisible"
+                        android:id="@+id/deleteProtagonistButton"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="20dp"
+                        android:alpha="0.5"
+                        android:layout_gravity="right|center_vertical"
+                        android:background="@drawable/ic_clear_black_24dp" />
+
+                </FrameLayout>
 
             </LinearLayout>
 

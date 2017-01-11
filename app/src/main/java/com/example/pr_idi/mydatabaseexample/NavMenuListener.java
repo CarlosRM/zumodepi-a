@@ -9,6 +9,7 @@ import android.view.MenuItem;
 public class NavMenuListener implements NavigationView.OnNavigationItemSelectedListener {
     private Context context;
     private DrawerLayout navDrawer;
+    private static boolean activityChanged;
 
     public static final int homneButton = 0;
     public static final int advancedViewButton = 1;
@@ -17,6 +18,14 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
     public NavMenuListener(Context context, DrawerLayout navDrawer) {
         this.context = context;
         this.navDrawer = navDrawer;
+    }
+
+    public static boolean getActivityChanged() {
+        if (activityChanged) {
+            activityChanged = false;
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -64,6 +73,7 @@ public class NavMenuListener implements NavigationView.OnNavigationItemSelectedL
             }
             default: return false;
         }
+        activityChanged = true;
         return true;
     }
 }

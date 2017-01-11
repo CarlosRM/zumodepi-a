@@ -18,6 +18,7 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.ItemClickCallback{
+public class RecyclerViewActivity extends AppCompatActivity implements RecyclerAdapter.ItemClickCallback {
 
     private RecyclerView recyclerView;
     private RecyclerAdapter recyclerAdapter;
@@ -43,11 +44,15 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     private String currentOrder;
     private String currentCriteria;
     private Spinner categorySpinner2;
+    private boolean searchSubstring;
+    private static boolean filmInserted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
+        searchSubstring = true;
+        filmInserted = false;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Advanced View");
@@ -60,12 +65,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         navView.getMenu().getItem(NavMenuListener.advancedViewButton).setChecked(true);
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        DrawerToggleAdvanced toggle = new DrawerToggleAdvanced(
                 this, navDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         navDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        ArrayAdapter<String> categorySpinnerAdapter = new ArrayAdapter<>(this, R.layout.category_spinner_style,categories);
+
+        ArrayAdapter<String> categorySpinnerAdapter = new ArrayAdapter<>(this, R.layout.category_spinner_style, categories);
         categorySpinnerAdapter.setDropDownViewResource(R.layout.category_spinner_style);
         categorySpinner.setAdapter(categorySpinnerAdapter);
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -90,7 +96,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         break;
                 }
                 if (Objects.equals(searchView.getQuery().toString(), "")) {
-                   values = filmData.getAllFilms(currentOrder);
+                    values = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
@@ -131,7 +137,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         break;
                 }
                 if (Objects.equals(searchView.getQuery().toString(), "")) {
-                    values= filmData.getAllFilms(currentOrder);
+                    values = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
                 } else {
@@ -147,13 +153,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
             }
         });
-
+        categorySpinner.setSelection(0);
+        categorySpinner2.setSelection(3);
         filmData = new FilmData(this);
         filmData.open();
+        values = new ArrayList<>();
 
-        values = filmData.getAllFilms(currentOrder);
-
-        recyclerAdapter = new RecyclerAdapter(values,this);
+        recyclerAdapter = new RecyclerAdapter(values, this);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerAdapter.setItemClickCallback(this);
     }
@@ -181,9 +187,12 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                 ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                     @Override
                     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                        textView.setText(Integer.toString((int) (rating*2)));
+                        textView.setText(Integer.toString((int) (rating * 2)));
                     }
                 });
+                Film film = values.get(position);
+                float rate = (float)film.getCritics_rate()/2;
+                ratingBar.setRating(rate);
                 break;
             case R.id.delete_button:
                 new AlertDialog.Builder(this)
@@ -195,7 +204,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                                 filmData.deleteFilm(film);
                                 values.remove(position);
                                 recyclerAdapter.notifyDataSetChanged();
-                                Toast.makeText(getApplicationContext(),film.getTitle() + " was deleted successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), film.getTitle() + " was deleted successfully", Toast.LENGTH_SHORT).show();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -224,7 +233,7 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if(searchView.getQuery().length() == 0) {
+                if (searchView.getQuery().length() == 0) {
                     values = filmData.getAllFilms(currentOrder);
                     recyclerAdapter.updateData(values);
                     recyclerAdapter.notifyDataSetChanged();
@@ -236,10 +245,10 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
         View searchPlate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
         searchPlate.setBackgroundResource(android.R.drawable.dark_header);
 
-        ImageView searchIcon = (ImageView)searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        ImageView searchIcon = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
         searchIcon.setImageResource(R.drawable.ic_search_white_24dp);
 
-        ImageView searchCloseIcon = (ImageView)searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+        ImageView searchCloseIcon = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
         searchCloseIcon.setImageResource(R.drawable.ic_clear_search);
 
         searchCloseIcon.setOnClickListener(new View.OnClickListener() {
@@ -268,27 +277,38 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
     protected void onNewIntent(Intent intent) {
         setIntent(intent);
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-
             String query = intent.getStringExtra(SearchManager.QUERY);
-            values = filmData.getFilmsContain(currentCriteria,
-                    query, currentOrder);
+            if (searchSubstring) {
+                values = filmData.getFilmsContain(currentCriteria,
+                        query, currentOrder);
+            } else {
+                values = filmData.getFilms(currentCriteria, query, currentOrder);
+                searchSubstring = true;
+            }
             recyclerAdapter.updateData(values);
             recyclerAdapter.notifyDataSetChanged();
-        }
-        else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+        } else if (Intent.ACTION_VIEW.equals(intent.getAction())) {
+            searchSubstring = false;
             String data = intent.getDataString();
             searchView.setQuery(data, true);
         }
     }
 
+    public static void insertFilm() {
+        filmInserted = true;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
-        Predictor.setCurrentCriteria(currentCriteria);
-        Predictor.setLowerBound(1);
-       values = filmData.getFilmsContain(currentCriteria,
-                searchView.getQuery().toString(), currentOrder);
-        recyclerAdapter.updateData(values);
-        recyclerAdapter.notifyDataSetChanged();
+        if (filmInserted) {
+            Predictor.setCurrentCriteria(currentCriteria);
+            Predictor.setLowerBound(1);
+            values = filmData.getFilmsContain(currentCriteria,
+                    searchView.getQuery().toString(), currentOrder);
+            recyclerAdapter.updateData(values);
+            recyclerAdapter.notifyDataSetChanged();
+            filmInserted = false;
+        }
     }
 }

@@ -81,13 +81,13 @@ public class FilmData {
                 + " = " + id, null);
     }
 
-    public List<Film> getFilms(String columnName, String name) {
+    public List<Film> getFilms(String columnName, String name, String orderBy) {
         List<Film> films = new ArrayList<>();
-        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, null, columnName + "= '" + name +"'", null, null, null, null);
-
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_FILMS, allColumns, columnName + "= '" + name +"'", null, null, null, orderBy);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Film film = cursorToFilm(cursor);
+            System.out.println(film);
             films.add(film);
             cursor.moveToNext();
         }
@@ -104,6 +104,7 @@ public class FilmData {
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Film film = cursorToFilm(cursor);
+            System.out.println(film);
             films.add(film);
             cursor.moveToNext();
         }

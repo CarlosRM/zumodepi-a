@@ -57,72 +57,95 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recycl
         holder.protagonist.setText(film.getProtagonist());
 
         int rate = film.getCritics_rate();
-        if (rate < 10) {
-            holder.star1.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        } else if(rate >= 10 && rate < 20){
-            holder.star1.setImageResource(R.drawable.ic_star_half_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 20 && rate < 30){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 30 && rate < 40){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_half_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 40 && rate < 50){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 50 && rate < 60){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_half_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 60 && rate < 70){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 70 && rate < 80){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_half_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 80 && rate < 90){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
-        }else if(rate >= 90 && rate < 99){
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_half_black_18dp);
-        }else {
-            holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
-            holder.star5.setImageResource(R.drawable.ic_star_black_18dp);
+        switch (rate) {
+            case 0: {
+                holder.star1.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 1: {
+                holder.star1.setImageResource(R.drawable.ic_star_half_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 2: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 3: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_half_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 4: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 5: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_half_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 6: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_border_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 7: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_half_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 8: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_border_black_18dp);
+                break;
+            }
+            case 9: {
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_half_black_18dp);
+                break;
+            }
+            case 10:{
+                holder.star1.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star2.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star3.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star4.setImageResource(R.drawable.ic_star_black_18dp);
+                holder.star5.setImageResource(R.drawable.ic_star_black_18dp);
+                break;
+            }
         }
     }
 

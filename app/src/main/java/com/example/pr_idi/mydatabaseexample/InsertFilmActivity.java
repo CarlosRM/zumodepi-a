@@ -62,9 +62,10 @@ public class InsertFilmActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("New Film");
         setSupportActionBar(toolbar);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        DrawerToggleAdvanced toggle = new DrawerToggleAdvanced(
                 this, navDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         navDrawer.setDrawerListener(toggle);
         toggle.syncState();

@@ -31,7 +31,7 @@ public class ModifyRateListener implements DialogInterface.OnClickListener {
     @Override
     public void onClick(DialogInterface dialog, int which) {
         Film film = values.get(position);
-        filmData.updateRatingFilm(film, (int)(ratingBar.getRating()*20));
+        filmData.updateRatingFilm(film, (int)(ratingBar.getRating()*2));
         recyclerAdapter.notifyDataSetChanged();
         Toast.makeText(context, film.getTitle() + "'s rate was modified successfully", Toast.LENGTH_SHORT).show();
     }

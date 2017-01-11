@@ -175,12 +175,13 @@ public class RecyclerViewActivity extends AppCompatActivity implements RecyclerA
                         .setView(R.layout.modify_rating_view)
                         .show();
                 RatingBar ratingBar = (RatingBar) dialog.findViewById(R.id.rating_bar);
+
                 modifyRateListener.setRatingBar(ratingBar);
                 final TextView textView = (TextView) dialog.findViewById(R.id.rateValueView);
                 ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
                     @Override
                     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                        textView.setText(Float.toString(rating*2));
+                        textView.setText(Integer.toString((int) (rating*2)));
                     }
                 });
                 break;

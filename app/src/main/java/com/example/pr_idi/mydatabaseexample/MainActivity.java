@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,8 +41,24 @@ public class MainActivity extends AppCompatActivity {
         navView.getMenu().getItem(NavMenuListener.homneButton).setChecked(true);
         navView.setNavigationItemSelectedListener(new NavMenuListener(this, navDrawer));
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, navDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, navDrawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                InputMethodManager inputMethodManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                InputMethodManager inputMethodManager = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
+
+        };
         navDrawer.setDrawerListener(toggle);
         toggle.syncState();
 

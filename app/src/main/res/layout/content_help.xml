@@ -121,7 +121,7 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="After you select 'Add Film' on the App Menu, you'll be able to add a new film to the database. You must inpust all the information about it and use the spinners to selecet both the country and the year. Also, you'll have to provide a rating for that film."/>
+        android:text="After you select 'Add Film' on the App Menu, you'll be able to add a new film to the database. You must input all the information about it and use the spinners to select both the country and the year. Also, you'll have to provide a rating for that film."/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

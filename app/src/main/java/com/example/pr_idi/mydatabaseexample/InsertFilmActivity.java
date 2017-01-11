@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,6 +35,10 @@ public class InsertFilmActivity extends AppCompatActivity {
     private TextView rateValue;
     private FilmData filmData;
     private Button insertButton;
+
+    private Button deleteTitleButton;
+    private Button deleteProtagonistButton;
+    private Button deleteDirectorButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,83 @@ public class InsertFilmActivity extends AppCompatActivity {
         navDrawer.setDrawerListener(toggle);
         toggle.syncState();
 
+        deleteDirectorButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputDirector.setText("");
+            }
+        });
+
+        deleteProtagonistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputProtagonist.setText("");
+            }
+        });
+
+        deleteTitleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputTitle.setText("");
+            }
+        });
+
+        inputDirector.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == 0) deleteDirectorButton.setAlpha(0.2f);
+                else deleteDirectorButton.setAlpha(0.6f);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        inputProtagonist.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == 0) deleteProtagonistButton.setAlpha(0.2f);
+                else deleteProtagonistButton.setAlpha(0.6f);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        inputTitle.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.length() == 0) deleteTitleButton.setAlpha(0.2f);
+                else deleteTitleButton.setAlpha(0.6f);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
         insertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +161,10 @@ public class InsertFilmActivity extends AppCompatActivity {
                             inputCountry.getSelectedItem().toString(), inputProtagonist.getText().toString(),
                             Integer.valueOf(inputYear.getSelectedItem().toString()),
                             (int) (inputRate.getRating() * 20));
+                            inputDirector.setText("");
+                            inputProtagonist.setText("");
+                            inputTitle.setText("");
+
 
                     Toast.makeText(getApplicationContext(), "Film added successfully", Toast.LENGTH_SHORT).show();
                 }
@@ -87,7 +174,7 @@ public class InsertFilmActivity extends AppCompatActivity {
         inputRate.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                rateValue.setText(Float.toString(rating * 2));
+                rateValue.setText(Integer.toString((int) (rating * 2)));
             }
         });
 
@@ -126,5 +213,9 @@ public class InsertFilmActivity extends AppCompatActivity {
         inputRate = (RatingBar) findViewById(R.id.ratingBarInsert);
         rateValue = (TextView) findViewById(R.id.rateValueInsert);
         insertButton = (Button) findViewById(R.id.insertButtonView);
+
+        deleteDirectorButton = (Button) findViewById(R.id.deleteDirectorButton);
+        deleteProtagonistButton = (Button) findViewById(R.id.deleteProtagonistButton);
+        deleteTitleButton = (Button) findViewById(R.id.deleteTitleButton);
     }
 }

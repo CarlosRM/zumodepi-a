@@ -3,8 +3,6 @@
     android:id="@+id/containerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal">
 
@@ -146,15 +144,6 @@
                 </LinearLayout>
 
             </LinearLayout>
-
-            <!--ImageView
-                android:id="@+id/deleteFilmImageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="8dp"
-                android:clickable="true"
-                android:src="@drawable/ic_delete_forever_black_24dp" /-->
 
         </LinearLayout>
     </LinearLayout>

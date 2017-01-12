@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView filmList;
     private boolean searchSubstring;
     private static boolean filmInserted = false;
+    private static boolean filmDeleted = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -132,16 +133,20 @@ public class MainActivity extends AppCompatActivity {
     public static void insertFilm() {
         filmInserted = true;
     }
+    public static void deleteFilm() {
+        filmDeleted = true;
+    }
 
     @Override
     protected void onResume() {
         Predictor.setMainSearchConf();
-        if (filmInserted) {
+        if (filmInserted ||filmDeleted) {
             List<Film> values = filmData.getFilmsContain(MySQLiteHelper.COLUMN_PROTAGONIST,
                     searchView.getQuery().toString(), MySQLiteHelper.COLUMN_TITLE);
             FilmAdapter adapter = new FilmAdapter(this, values);
             filmList.setAdapter(adapter);
             filmInserted = false;
+            filmDeleted = false;
         }
         super.onResume();
     }
